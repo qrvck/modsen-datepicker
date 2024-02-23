@@ -20,7 +20,11 @@
     "build:prod": "cross-env NODE_ENV=production npm run build",
     "build:watch": "cross-env NODE_ENV=development rollup -c --watch",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "lint": "eslint --fix \"./src/**/*.{ts,tsx,json}\"",
+    "format": "prettier --write \"./src/**/*.{ts,tsx,json,md}\"",
+    "eslint": "eslint",
+    "postinstall": "husky"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -51,6 +55,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^12.0.0",
+    "husky": "^9.0.11",
     "prettier": "^3.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

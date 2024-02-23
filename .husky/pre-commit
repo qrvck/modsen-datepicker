@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+if [[ $(git diff --cached --name-only --diff-filter=ACM | grep -E "\.(js|ts|jsx|tsx)$") = "" ]]; then
+  exit 0
+fi
+
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep -E "\.(js|ts|jsx|tsx)$")
+PASS=true
+
+echo "🔄 Validating Javascript"
+
+npm run eslint ${STAGED_FILES[*]}
+
+echo "✅ Javascript validation completed!"
