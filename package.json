@@ -21,8 +21,8 @@
     "build:watch": "cross-env NODE_ENV=development rollup -c --watch",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "lint": "eslint --fix \"./src/**/*.{ts,tsx,json}\"",
-    "format": "prettier --write \"./src/**/*.{ts,tsx,json,md}\"",
+    "lint": "eslint --fix \"./src/**/*.{js,ts,jsx,tsx,json}\"",
+    "format": "prettier --write \"./src/**/*.{js,ts,jsx,tsx,json}\"",
     "eslint": "eslint",
     "postinstall": "husky"
   },
