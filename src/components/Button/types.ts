@@ -1,6 +1,6 @@
 interface IButton {
   label: string;
-  variant?: "primary" | "secondary";
+  variant?: 'primary' | 'secondary';
   onClick?: () => void;
 }
 
