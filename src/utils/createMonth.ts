@@ -1,5 +1,5 @@
 import { createDate } from './createDate';
-import { createDay } from './createDay';
+import { createDay, IDay } from './createDay';
 
 function getNumberOfDaysInMonth(date: Date) {
   const copiedDate = new Date(date.getFullYear(), date.getMonth() + 1, 1);
@@ -16,7 +16,7 @@ function createMonth(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'monday')
   );
 
   const createMonthDays = (numberOfDaysInMonth: number) => {
-    const days = [];
+    const days: IDay[] = [];
 
     for (let i = 0; i < numberOfDaysInMonth; i++) {
       const monthDay = new Date(date.getTime());

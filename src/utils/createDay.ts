@@ -24,4 +24,6 @@ function createDay(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'monday') {
   };
 }
 
+export type IDay = ReturnType<typeof createDay>;
+
 export { createDay };

@@ -1,3 +1,4 @@
+import { IDay } from './createDay';
 import { createMonth } from './createMonth';
 
 function createFullMonth(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'monday') {
@@ -14,10 +15,11 @@ function createFullMonth(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'mond
   const numberOfDaysFromNextMonth = daysInWeek - lastDayOfCurrentMonth.dayNumberInWeek;
 
   const getAllDaysOfMonth = () => {
-    const allDaysOfMonth = [];
+    const allDaysOfMonth: IDay[] = [];
 
     for (let i = numberOfDaysFromPrevMonth; i >= 1; i--) {
-      const dayOfPrevMonth = prevMonth.days.at(i * -1);
+      // const dayOfPrevMonth = prevMonth.days.at(i * -1);
+      const dayOfPrevMonth = prevMonth.days[prevMonth.days.length - i];
       allDaysOfMonth.push(dayOfPrevMonth);
     }
 
