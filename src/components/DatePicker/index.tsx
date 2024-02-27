@@ -121,6 +121,7 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
       onChangeYear,
     } = this;
     const { firstDayOfWeek } = this.props;
+    const { displayedYear } = this;
 
     return (
       <Wrapper>
@@ -134,6 +135,7 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
         />
         <Body
           mode={mode}
+          displayedYear={displayedYear}
           firstDayOfWeek={firstDayOfWeek}
           currentMonth={currentMonth}
           onChangeMonth={onChangeMonth}

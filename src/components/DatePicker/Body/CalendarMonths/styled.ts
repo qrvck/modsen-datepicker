@@ -18,6 +18,10 @@ const MonthCell = styled.div`
   &:hover {
     background-color: rgba(47, 128, 237, 0.1);
   }
+
+  &.current {
+    background-color: orange;
+  }
 `;
 
 export { MonthCell, Wrapper };

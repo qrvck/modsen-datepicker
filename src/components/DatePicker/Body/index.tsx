@@ -9,6 +9,7 @@ import { DayNames } from './DayNames';
 interface IBodyProps {
   firstDayOfWeek?: 'sunday' | 'monday';
   mode: 'days' | 'months' | 'years';
+  displayedYear: number;
   currentMonth: IFullMonth;
   onChangeMonth: (monthIndex: number) => void;
   onChangeYear: (year: number) => void;
@@ -16,7 +17,8 @@ interface IBodyProps {
 
 class Body extends Component<IBodyProps> {
   render() {
-    const { firstDayOfWeek, currentMonth, mode, onChangeMonth, onChangeYear } = this.props;
+    const { firstDayOfWeek, currentMonth, mode, displayedYear, onChangeMonth, onChangeYear } =
+      this.props;
 
     return (
       <div>
@@ -26,7 +28,9 @@ class Body extends Component<IBodyProps> {
             <CalendarDays currentMonth={currentMonth} />
           </>
         )}
-        {mode === 'months' && <CalendarMonths onChangeMonth={onChangeMonth} />}
+        {mode === 'months' && (
+          <CalendarMonths displayedYear={displayedYear} onChangeMonth={onChangeMonth} />
+        )}
         {mode === 'years' && <CalendarYears onChangeYear={onChangeYear} />}
       </div>
     );

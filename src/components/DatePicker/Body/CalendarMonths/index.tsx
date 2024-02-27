@@ -4,15 +4,25 @@ import { getMonthNames } from '../../../../utils/getMonthNames';
 import { MonthCell, Wrapper } from './styled';
 
 interface ICalendarMonthsProps {
+  displayedYear: number;
   onChangeMonth: (monthIndex: number) => void;
 }
 
 class CalendarMonths extends Component<ICalendarMonthsProps> {
   createMonthCells = () => {
-    const { onChangeMonth } = this.props;
+    const { displayedYear, onChangeMonth } = this.props;
+    const now = new Date();
+    const currentYear = now.getFullYear();
+    const currentMonthIndex = now.getMonth();
 
     return getMonthNames().map(({ monthName, monthIndex }) => (
-      <MonthCell onClick={() => onChangeMonth(monthIndex)} key={monthName}>
+      <MonthCell
+        className={
+          currentYear === displayedYear && currentMonthIndex === monthIndex ? 'current' : ''
+        }
+        onClick={() => onChangeMonth(monthIndex)}
+        key={monthName}
+      >
         {monthName}
       </MonthCell>
     ));
