@@ -5,23 +5,19 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const DayCell = styled.div`
-  width: 2.4em;
-  height: 2.4em;
+const MonthCell = styled.div`
+  width: 5.6em;
+  height: 3.6em;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  cursor: default;
+  cursor: pointer;
 
-  &.current {
-    background-color: orange;
-  }
-
-  &.outside {
-    color: #aaa;
+  &:hover {
+    background-color: rgba(47, 128, 237, 0.1);
   }
 `;
 
-export { DayCell, Wrapper };
+export { MonthCell, Wrapper };

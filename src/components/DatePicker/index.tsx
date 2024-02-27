@@ -20,17 +20,16 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
     currentMonth: createFullMonth(new Date(), this.props.firstDayOfWeek),
   };
 
-  selectedDayNumber = 0;
-  selectedMonthIndex = new Date().getMonth();
-  selectedYear = new Date().getFullYear();
+  displayedMonthIndex = new Date().getMonth();
+  displayedYear = new Date().getFullYear();
 
   componentDidUpdate(prevProps: Readonly<IDatePickerProps>) {
     const { firstDayOfWeek } = this.props;
-    const { selectedMonthIndex, selectedYear } = this;
+    const { displayedMonthIndex, displayedYear } = this;
 
     if (prevProps.firstDayOfWeek !== firstDayOfWeek) {
       this.setState({
-        currentMonth: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
+        currentMonth: createFullMonth(new Date(displayedYear, displayedMonthIndex), firstDayOfWeek),
       });
     }
   }
@@ -38,14 +37,14 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
   onClickMonth = () => {
     const { mode } = this.state;
 
-    const newMode = mode === 'days' ? 'months' : 'days';
+    const newMode = mode !== 'months' ? 'months' : 'days';
     this.setState({ mode: newMode });
   };
 
   onClickYear = () => {
     const { mode } = this.state;
 
-    const newMode = mode === 'days' ? 'years' : 'days';
+    const newMode = mode !== 'years' ? 'years' : 'days';
     this.setState({ mode: newMode });
   };
 
@@ -53,18 +52,18 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
     const indexOfFirstMonth = 0;
     const indexOfLastMonth = 11;
 
-    if (this.selectedMonthIndex === indexOfLastMonth) {
-      this.selectedMonthIndex = indexOfFirstMonth;
-      this.selectedYear += 1;
+    if (this.displayedMonthIndex === indexOfLastMonth) {
+      this.displayedMonthIndex = indexOfFirstMonth;
+      this.displayedYear += 1;
     } else {
-      this.selectedMonthIndex += 1;
+      this.displayedMonthIndex += 1;
     }
 
-    const { selectedMonthIndex, selectedYear } = this;
+    const { displayedMonthIndex, displayedYear } = this;
     const { firstDayOfWeek } = this.props;
 
     this.setState({
-      currentMonth: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
+      currentMonth: createFullMonth(new Date(displayedYear, displayedMonthIndex), firstDayOfWeek),
     });
   };
 
@@ -72,24 +71,36 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
     const indexOfFirstMonth = 0;
     const indexOfLastMonth = 11;
 
-    if (this.selectedMonthIndex === indexOfFirstMonth) {
-      this.selectedMonthIndex = indexOfLastMonth;
-      this.selectedYear -= 1;
+    if (this.displayedMonthIndex === indexOfFirstMonth) {
+      this.displayedMonthIndex = indexOfLastMonth;
+      this.displayedYear -= 1;
     } else {
-      this.selectedMonthIndex -= 1;
+      this.displayedMonthIndex -= 1;
     }
 
-    const { selectedMonthIndex, selectedYear } = this;
+    const { displayedMonthIndex, displayedYear } = this;
     const { firstDayOfWeek } = this.props;
 
     this.setState({
-      currentMonth: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
+      currentMonth: createFullMonth(new Date(displayedYear, displayedMonthIndex), firstDayOfWeek),
+    });
+  };
+
+  onChangeMonth = (monthIndex: number) => {
+    const { firstDayOfWeek } = this.props;
+    const { displayedYear } = this;
+
+    this.displayedMonthIndex = monthIndex;
+
+    this.setState({
+      mode: 'days',
+      currentMonth: createFullMonth(new Date(displayedYear, monthIndex), firstDayOfWeek),
     });
   };
 
   render() {
-    const { currentMonth } = this.state;
-    const { onClickMonth, onClickYear, onClickNextMonth, onClickPrevMonth } = this;
+    const { currentMonth, mode } = this.state;
+    const { onClickMonth, onClickYear, onClickNextMonth, onClickPrevMonth, onChangeMonth } = this;
     const { firstDayOfWeek } = this.props;
 
     return (
@@ -102,7 +113,12 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
           onClickNextMonth={onClickNextMonth}
           onClickPrevMonth={onClickPrevMonth}
         />
-        <Body firstDayOfWeek={firstDayOfWeek} currentMonth={currentMonth} />
+        <Body
+          mode={mode}
+          firstDayOfWeek={firstDayOfWeek}
+          currentMonth={currentMonth}
+          onChangeMonth={onChangeMonth}
+        />
       </Wrapper>
     );
   }

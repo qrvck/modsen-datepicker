@@ -5,8 +5,8 @@ const Wrapper = styled.div`
 `;
 
 const Cell = styled.div`
-  width: 2em;
-  height: 2em;
+  width: 2.4em;
+  height: 2.4em;
 
   display: flex;
   align-items: center;
