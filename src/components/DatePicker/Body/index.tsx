@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { IFullMonth } from '../../../utils/createFullMonth';
 import { CalendarDays } from './CalendarDays';
 import { CalendarMonths } from './CalendarMonths';
+import { CalendarYears } from './CalendarYears';
 import { DayNames } from './DayNames';
 
 interface IBodyProps {
@@ -10,11 +11,12 @@ interface IBodyProps {
   mode: 'days' | 'months' | 'years';
   currentMonth: IFullMonth;
   onChangeMonth: (monthIndex: number) => void;
+  onChangeYear: (year: number) => void;
 }
 
 class Body extends Component<IBodyProps> {
   render() {
-    const { firstDayOfWeek, currentMonth, mode, onChangeMonth } = this.props;
+    const { firstDayOfWeek, currentMonth, mode, onChangeMonth, onChangeYear } = this.props;
 
     return (
       <div>
@@ -25,6 +27,7 @@ class Body extends Component<IBodyProps> {
           </>
         )}
         {mode === 'months' && <CalendarMonths onChangeMonth={onChangeMonth} />}
+        {mode === 'years' && <CalendarYears onChangeYear={onChangeYear} />}
       </div>
     );
   }

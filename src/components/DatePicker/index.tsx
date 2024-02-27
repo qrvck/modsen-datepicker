@@ -98,9 +98,28 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
     });
   };
 
+  onChangeYear = (year: number) => {
+    const { firstDayOfWeek } = this.props;
+    const { displayedMonthIndex } = this;
+
+    this.displayedYear = year;
+
+    this.setState({
+      mode: 'days',
+      currentMonth: createFullMonth(new Date(year, displayedMonthIndex), firstDayOfWeek),
+    });
+  };
+
   render() {
     const { currentMonth, mode } = this.state;
-    const { onClickMonth, onClickYear, onClickNextMonth, onClickPrevMonth, onChangeMonth } = this;
+    const {
+      onClickMonth,
+      onClickYear,
+      onClickNextMonth,
+      onClickPrevMonth,
+      onChangeMonth,
+      onChangeYear,
+    } = this;
     const { firstDayOfWeek } = this.props;
 
     return (
@@ -118,6 +137,7 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
           firstDayOfWeek={firstDayOfWeek}
           currentMonth={currentMonth}
           onChangeMonth={onChangeMonth}
+          onChangeYear={onChangeYear}
         />
       </Wrapper>
     );
