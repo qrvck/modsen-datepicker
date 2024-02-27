@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 
-import { IDay } from '../../../utils/createDay';
+import { IFullMonth } from '../../../utils/createFullMonth';
 import { CalendarDays } from './CalendarDays';
 import { DayNames } from './DayNames';
 
 interface IBodyProps {
   firstDayOfWeek?: 'sunday' | 'monday';
-  days: IDay[];
+  currentMonth: IFullMonth;
 }
 
 class Body extends Component<IBodyProps> {
   render() {
-    const { firstDayOfWeek, days } = this.props;
+    const { firstDayOfWeek, currentMonth } = this.props;
 
     return (
       <div>
         <DayNames firstDayOfWeek={firstDayOfWeek}></DayNames>
-        <CalendarDays days={days} />
+        <CalendarDays currentMonth={currentMonth} />
       </div>
     );
   }

@@ -12,8 +12,14 @@ const DayCell = styled.div`
   align-items: center;
   justify-content: center;
 
+  cursor: default;
+
   &.current {
     background-color: orange;
+  }
+
+  &.outside {
+    color: #aaa;
   }
 `;
 

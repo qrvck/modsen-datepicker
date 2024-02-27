@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
 
-import { IDay } from '../../../../utils/createDay';
+import { checkIsCurrentDay, checkIsDayFromMonth } from '../../../../utils/checkDay';
+import { IFullMonth } from '../../../../utils/createFullMonth';
 import { DayCell, WeekRow } from './styled';
 
 interface ICalendarDays {
-  days: IDay[];
+  currentMonth: IFullMonth;
+}
+
+function getClassNameForDayCell(isCurrentDay: boolean, isDayFromMonth: boolean) {
+  let className = '';
+
+  className = isCurrentDay ? 'current' : '';
+  className = !isDayFromMonth ? `${className} outside` : className;
+
+  return className;
 }
 
 class CalendarDays extends Component<ICalendarDays> {
-  currentDayNumber = new Date().getDate();
-  currentMonthIndex = new Date().getMonth();
-  currentYear = new Date().getFullYear();
-
   createWeekRows = () => {
     const dayInWeek = 7;
-    const { days } = this.props;
-    const { currentDayNumber, currentMonthIndex, currentYear } = this;
+    const { allDays: days, monthIndex } = this.props.currentMonth;
     const weekRows = [];
 
     for (let i = 0; i < days.length / dayInWeek; i++) {
@@ -23,15 +28,16 @@ class CalendarDays extends Component<ICalendarDays> {
 
       const weekRow = (
         <WeekRow>
-          {daysOfWeek.map(({ dayNumber, monthIndex, year }) => {
-            const isCurrentDay =
-              dayNumber === currentDayNumber &&
-              monthIndex === currentMonthIndex &&
-              year === currentYear;
+          {daysOfWeek.map((day) => {
+            const isCurrentDay = checkIsCurrentDay(day);
+            const isDayFromMonth = checkIsDayFromMonth(day, monthIndex);
 
             return (
-              <DayCell className={isCurrentDay ? 'current' : ''} key={dayNumber + monthIndex}>
-                {dayNumber}
+              <DayCell
+                className={getClassNameForDayCell(isCurrentDay, isDayFromMonth)}
+                key={day.dayNumber + day.monthIndex}
+              >
+                {day.dayNumber}
               </DayCell>
             );
           })}

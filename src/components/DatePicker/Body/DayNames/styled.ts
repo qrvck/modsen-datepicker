@@ -13,6 +13,7 @@ const Cell = styled.div`
   justify-content: center;
 
   font-weight: 700;
+  cursor: default;
 `;
 
 export { Cell, Wrapper };

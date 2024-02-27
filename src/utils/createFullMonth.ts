@@ -46,4 +46,5 @@ function createFullMonth(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'mond
   };
 }
 
+export type IFullMonth = ReturnType<typeof createFullMonth>;
 export { createFullMonth };

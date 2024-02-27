@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { createFullMonth } from '../../utils/createFullMonth';
+import { createFullMonth, IFullMonth } from '../../utils/createFullMonth';
 import { Body } from './Body';
 import { Header } from './Header';
 import { Wrapper } from './styled';
@@ -11,13 +11,13 @@ type IDatePickerProps = {
 
 interface IDatePickerState {
   mode: 'days' | 'months' | 'years';
-  currentMonthData: ReturnType<typeof createFullMonth>;
+  currentMonth: IFullMonth;
 }
 
 class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
   state: IDatePickerState = {
     mode: 'days',
-    currentMonthData: createFullMonth(new Date(), this.props.firstDayOfWeek),
+    currentMonth: createFullMonth(new Date(), this.props.firstDayOfWeek),
   };
 
   selectedDayNumber = 0;
@@ -30,10 +30,7 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
 
     if (prevProps.firstDayOfWeek !== firstDayOfWeek) {
       this.setState({
-        currentMonthData: createFullMonth(
-          new Date(selectedYear, selectedMonthIndex),
-          firstDayOfWeek
-        ),
+        currentMonth: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
       });
     }
   }
@@ -53,8 +50,11 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
   };
 
   onClickNextMonth = () => {
-    if (this.selectedMonthIndex === 11) {
-      this.selectedMonthIndex = 0;
+    const indexOfFirstMonth = 0;
+    const indexOfLastMonth = 11;
+
+    if (this.selectedMonthIndex === indexOfLastMonth) {
+      this.selectedMonthIndex = indexOfFirstMonth;
       this.selectedYear += 1;
     } else {
       this.selectedMonthIndex += 1;
@@ -64,13 +64,16 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
     const { firstDayOfWeek } = this.props;
 
     this.setState({
-      currentMonthData: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
+      currentMonth: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
     });
   };
 
   onClickPrevMonth = () => {
-    if (this.selectedMonthIndex === 0) {
-      this.selectedMonthIndex = 11;
+    const indexOfFirstMonth = 0;
+    const indexOfLastMonth = 11;
+
+    if (this.selectedMonthIndex === indexOfFirstMonth) {
+      this.selectedMonthIndex = indexOfLastMonth;
       this.selectedYear -= 1;
     } else {
       this.selectedMonthIndex -= 1;
@@ -80,26 +83,26 @@ class DatePicker extends Component<IDatePickerProps, IDatePickerState> {
     const { firstDayOfWeek } = this.props;
 
     this.setState({
-      currentMonthData: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
+      currentMonth: createFullMonth(new Date(selectedYear, selectedMonthIndex), firstDayOfWeek),
     });
   };
 
   render() {
-    const { currentMonthData } = this.state;
+    const { currentMonth } = this.state;
     const { onClickMonth, onClickYear, onClickNextMonth, onClickPrevMonth } = this;
     const { firstDayOfWeek } = this.props;
 
     return (
       <Wrapper>
         <Header
-          month={currentMonthData.monthName}
-          year={currentMonthData.year}
+          month={currentMonth.monthName}
+          year={currentMonth.year}
           onClickMonth={onClickMonth}
           onClickYear={onClickYear}
           onClickNextMonth={onClickNextMonth}
           onClickPrevMonth={onClickPrevMonth}
         />
-        <Body firstDayOfWeek={firstDayOfWeek} days={currentMonthData.allDays} />
+        <Body firstDayOfWeek={firstDayOfWeek} currentMonth={currentMonth} />
       </Wrapper>
     );
   }
