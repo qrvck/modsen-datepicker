@@ -1,31 +1,55 @@
 import React, { Component } from 'react';
 
 import { IFullMonth } from '../../../utils/createFullMonth';
+import { ContextData } from '../Context';
 import { CalendarDays } from './CalendarDays';
 import { CalendarMonths } from './CalendarMonths';
 import { CalendarYears } from './CalendarYears';
 import { DayNames } from './DayNames';
 
 interface IBodyProps {
-  firstDayOfWeek?: 'sunday' | 'monday';
-  mode: 'days' | 'months' | 'years';
-  displayedYear: number;
-  currentMonth: IFullMonth;
-  onChangeMonth: (monthIndex: number) => void;
-  onChangeYear: (year: number) => void;
+  monthData: IFullMonth;
 }
 
 class Body extends Component<IBodyProps> {
+  static contextType = ContextData;
+  declare context: React.ContextType<typeof ContextData>;
+
+  onChangeMonth = (monthIndex: number) => {
+    const {
+      params: { displayedYear, changeMode, changeDisplayedMonthIndex, changeDisplayedMonthData },
+    } = this.context;
+
+    changeMode('days');
+    changeDisplayedMonthIndex(monthIndex);
+    changeDisplayedMonthData(new Date(displayedYear, monthIndex));
+  };
+
+  onChangeYear = (year: number) => {
+    const {
+      params: { displayedMonthIndex, changeMode, changeDisplayedYear, changeDisplayedMonthData },
+    } = this.context;
+
+    changeMode('days');
+    changeDisplayedYear(year);
+    changeDisplayedMonthData(new Date(year, displayedMonthIndex));
+  };
+
   render() {
-    const { firstDayOfWeek, currentMonth, mode, displayedYear, onChangeMonth, onChangeYear } =
-      this.props;
+    const {
+      config: { firstDayOfWeek },
+      params: { mode, displayedYear },
+    } = this.context;
+
+    const { monthData } = this.props;
+    const { onChangeMonth, onChangeYear } = this;
 
     return (
       <div>
         {mode === 'days' && (
           <>
             <DayNames firstDayOfWeek={firstDayOfWeek}></DayNames>
-            <CalendarDays currentMonth={currentMonth} />
+            <CalendarDays currentMonth={monthData} />
           </>
         )}
         {mode === 'months' && (
