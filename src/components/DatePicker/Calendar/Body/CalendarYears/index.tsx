@@ -1,7 +1,7 @@
 import React, { Component, createRef } from 'react';
 
-import { MIN_YEAR } from '../../../../constants';
-import { getYears } from '../../../../utils/getYears';
+import { MIN_YEAR } from '../../../../../constants';
+import { getYears } from '../../../../../utils/getYears';
 import { Wrapper, YearCell } from './styled';
 
 interface ICalendarYearsProps {

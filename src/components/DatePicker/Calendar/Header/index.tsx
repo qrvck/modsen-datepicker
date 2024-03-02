@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { ContextData } from '../Context';
+import { ContextData } from '../../Context';
 import {
   MonthButton,
   MontNameAndYearWrapper,

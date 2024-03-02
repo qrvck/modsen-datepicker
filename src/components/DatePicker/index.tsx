@@ -1,24 +1,25 @@
 import React from 'react';
 
+import { Calendar } from './Calendar';
 import { Context } from './Context';
-import { ServiceClass } from './ServiceClass';
+import { Input } from './Input';
 
 interface IDatePickerProps {
   firstDayOfWeek?: 'sunday' | 'monday';
   range?: boolean;
   todoList?: boolean;
+  withHolidays?: boolean;
   maxValue?: Date;
   minValue?: Date;
-  withHolidays?: boolean;
 }
 
 function DatePicker({
   firstDayOfWeek = 'monday',
   range = false,
   todoList = false,
+  withHolidays = false,
   maxValue,
   minValue,
-  withHolidays = false,
 }: IDatePickerProps) {
   return (
     <Context
@@ -29,7 +30,8 @@ function DatePicker({
       minValue={minValue}
       withHolidays={withHolidays}
     >
-      <ServiceClass />
+      <Input />
+      <Calendar />
     </Context>
   );
 }

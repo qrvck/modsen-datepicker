@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { checkIsCurrentDay, checkIsDayFromMonth } from '../../../../utils/checkDay';
-import { IFullMonth } from '../../../../utils/createFullMonth';
+import { checkIsCurrentDay, checkIsDayFromMonth } from '../../../../../utils/checkDay';
+import { IFullMonth } from '../../../../../utils/createFullMonth';
 import { DayCell, Wrapper } from './styled';
 
 interface ICalendarDays {

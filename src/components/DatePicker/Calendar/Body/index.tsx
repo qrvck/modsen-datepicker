@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { IFullMonth } from '../../../utils/createFullMonth';
-import { ContextData } from '../Context';
+import { IFullMonth } from '../../../../utils/createFullMonth';
+import { ContextData } from '../../Context';
 import { CalendarDays } from './CalendarDays';
 import { CalendarMonths } from './CalendarMonths';
 import { CalendarYears } from './CalendarYears';

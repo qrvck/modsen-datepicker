@@ -1,11 +1,11 @@
 import React from 'react';
 
+import { ContextData } from '../Context';
 import { Body } from './Body';
-import { ContextData } from './Context';
 import { Header } from './Header';
 import { Wrapper } from './styled';
 
-class ServiceClass extends React.Component {
+class Calendar extends React.Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
@@ -31,4 +31,4 @@ class ServiceClass extends React.Component {
   }
 }
 
-export { ServiceClass };
+export { Calendar };
