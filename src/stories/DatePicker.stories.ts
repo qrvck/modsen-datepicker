@@ -10,3 +10,10 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {};
+
+export const minMaxDate: Story = {
+  args: {
+    maxDate: new Date(2024, 3, 15),
+    minDate: new Date(2024, 1, 15),
+  },
+};

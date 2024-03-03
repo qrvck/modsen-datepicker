@@ -15,4 +15,16 @@ function checkIsDayFromMonth(day: IDay, monthIndex: number) {
   return day.monthIndex === monthIndex;
 }
 
-export { checkIsCurrentDay, checkIsDayFromMonth };
+function checkIsDayGreaterDate(day: IDay, date: Date) {
+  const { dayNumber, monthIndex, year } = day;
+
+  return new Date(year, monthIndex, dayNumber) > date;
+}
+
+function checkIsDayLessDate(day: IDay, date: Date) {
+  const { dayNumber, monthIndex, year } = day;
+
+  return new Date(year, monthIndex, dayNumber) < date;
+}
+
+export { checkIsCurrentDay, checkIsDayFromMonth, checkIsDayGreaterDate, checkIsDayLessDate };

@@ -7,8 +7,8 @@ interface IContextProps {
   firstDayOfWeek: 'sunday' | 'monday';
   range: boolean;
   todoList: boolean;
-  maxValue?: Date;
-  minValue?: Date;
+  maxDate?: Date;
+  minDate?: Date;
   withHolidays: boolean;
 }
 
@@ -17,8 +17,8 @@ export interface IContextData {
     firstDayOfWeek: 'sunday' | 'monday';
     range: boolean;
     todoList: boolean;
-    maxValue?: Date;
-    minValue?: Date;
+    maxDate?: Date;
+    minDate?: Date;
     withHolidays: boolean;
   };
 
@@ -60,8 +60,8 @@ function Context({
   range,
   todoList,
   withHolidays,
-  maxValue,
-  minValue,
+  maxDate,
+  minDate,
 }: IContextProps) {
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days');
   const [displayedMonthData, setDisplayedMonthData] = useState<IFullMonth>(
@@ -82,8 +82,8 @@ function Context({
       range,
       todoList,
       withHolidays,
-      maxValue,
-      minValue,
+      maxDate,
+      minDate,
     },
 
     params: {

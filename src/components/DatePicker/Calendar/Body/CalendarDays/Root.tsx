@@ -16,6 +16,7 @@ interface IDayWithProps extends IDay {
   props: {
     onClick?: () => void;
     className?: string;
+    disabled?: boolean;
   };
 }
 
@@ -34,6 +35,7 @@ class Root extends Component<IRootProps> {
 
   render() {
     const { createDayCells } = this;
+    console.log(this.props.displayedMonthData);
 
     return <Wrapper>{...createDayCells()}</Wrapper>;
   }

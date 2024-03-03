@@ -9,8 +9,8 @@ interface IDatePickerProps {
   range?: boolean;
   todoList?: boolean;
   withHolidays?: boolean;
-  maxValue?: Date;
-  minValue?: Date;
+  maxDate?: Date;
+  minDate?: Date;
 }
 
 function DatePicker({
@@ -18,16 +18,16 @@ function DatePicker({
   range = false,
   todoList = false,
   withHolidays = false,
-  maxValue,
-  minValue,
+  maxDate,
+  minDate,
 }: IDatePickerProps) {
   return (
     <Context
       firstDayOfWeek={firstDayOfWeek}
       range={range}
       todoList={todoList}
-      maxValue={maxValue}
-      minValue={minValue}
+      maxDate={maxDate}
+      minDate={minDate}
       withHolidays={withHolidays}
     >
       <Input />

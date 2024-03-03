@@ -19,7 +19,8 @@ const DayCell = styled.div`
     background-color: orange;
   }
 
-  &.outside {
+  &.outside,
+  &[disabled] {
     color: #aaa;
   }
 `;
