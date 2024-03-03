@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 
 import { ContextData } from '../../../Context';
 import { withCurrentDate } from './hoc/withCurrentDate';
-// import { withSingleSelect } from './hoc/withSingleSelect';
 import { withMinMaxDate } from './hoc/withMinMaxDate';
+import { withSingleSelect } from './hoc/withSingleSelect';
 import { Root } from './Root';
 
 type IComponentHOC =
   | typeof Root
   | ReturnType<typeof withCurrentDate>
-  | ReturnType<typeof withMinMaxDate>;
-// | ReturnType<typeof withSingleSelect>;
+  | ReturnType<typeof withMinMaxDate>
+  | ReturnType<typeof withSingleSelect>;
 
 class CalendarDays extends Component {
   static contextType = ContextData;
@@ -18,21 +18,20 @@ class CalendarDays extends Component {
 
   render() {
     const {
-      config: { minDate, maxDate },
+      config: { range, minDate, maxDate },
       params: { displayedMonthData },
     } = this.context;
 
     let ComponentHOC: IComponentHOC = Root;
+    ComponentHOC = withCurrentDate(ComponentHOC);
 
     if (minDate || maxDate) {
       ComponentHOC = withMinMaxDate(ComponentHOC);
     }
 
-    // if (!range) {
-    //   ComponentHOC = withSingleSelect(ComponentHOC);
-    // }
-
-    ComponentHOC = withCurrentDate(ComponentHOC);
+    if (!range) {
+      ComponentHOC = withSingleSelect(ComponentHOC);
+    }
 
     return <ComponentHOC displayedMonthData={displayedMonthData} />;
   }

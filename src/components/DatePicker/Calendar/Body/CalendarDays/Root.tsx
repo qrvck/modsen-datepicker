@@ -12,7 +12,7 @@ interface IDisplayedMonthData extends IFullMonth {
   allDays: IDayWithProps[];
 }
 
-interface IDayWithProps extends IDay {
+export interface IDayWithProps extends IDay {
   props: {
     onClick?: () => void;
     className?: string;
@@ -35,7 +35,7 @@ class Root extends Component<IRootProps> {
 
   render() {
     const { createDayCells } = this;
-    console.log(this.props.displayedMonthData);
+    // console.log(this.props.displayedMonthData);
 
     return <Wrapper>{...createDayCells()}</Wrapper>;
   }

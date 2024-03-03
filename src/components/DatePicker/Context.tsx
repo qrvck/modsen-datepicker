@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useLayoutEffect, useState } from 'react';
 
+import { IDay } from '../../utils/createDay';
 import { createFullMonth, IFullMonth } from '../../utils/createFullMonth';
 
 interface IContextProps {
@@ -32,6 +33,11 @@ export interface IContextData {
     changeDisplayedYear: (year: number) => void;
     changeDisplayedMonthData: (date: Date) => void;
   };
+
+  singleSelect: {
+    selectedDay?: IDay;
+    changeSelectedDay: (day: IDay) => void;
+  };
 }
 
 const ContextData = createContext<IContextData>({
@@ -52,6 +58,10 @@ const ContextData = createContext<IContextData>({
     changeDisplayedYear: () => {},
     changeDisplayedMonthData: () => {},
   },
+
+  singleSelect: {
+    changeSelectedDay: () => {},
+  },
 });
 
 function Context({
@@ -64,11 +74,13 @@ function Context({
   minDate,
 }: IContextProps) {
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days');
+  const [displayedMonthIndex, setDisplayedMonthIndex] = useState<number>(new Date().getMonth());
+  const [displayedYear, setDisplayedYear] = useState<number>(new Date().getFullYear());
   const [displayedMonthData, setDisplayedMonthData] = useState<IFullMonth>(
     createFullMonth(new Date(), firstDayOfWeek)
   );
-  const [displayedMonthIndex, setDisplayedMonthIndex] = useState<number>(new Date().getMonth());
-  const [displayedYear, setDisplayedYear] = useState<number>(new Date().getFullYear());
+
+  const [selectedDay, setSelectedDay] = useState<IDay | undefined>(undefined);
 
   useLayoutEffect(() => {
     setDisplayedMonthData(
@@ -96,6 +108,11 @@ function Context({
         setDisplayedMonthData(createFullMonth(new Date(date), firstDayOfWeek)),
       changeDisplayedMonthIndex: (monthIndex: number) => setDisplayedMonthIndex(monthIndex),
       changeDisplayedYear: (year: number) => setDisplayedYear(year),
+    },
+
+    singleSelect: {
+      selectedDay,
+      changeSelectedDay: (day: IDay) => setSelectedDay(day),
     },
   };
 
