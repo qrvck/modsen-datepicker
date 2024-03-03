@@ -12,7 +12,6 @@ class Calendar extends React.Component {
   render() {
     const {
       config: { range },
-      params: { displayedMonthData },
     } = this.context;
 
     let body = 'body';
@@ -24,7 +23,7 @@ class Calendar extends React.Component {
     return (
       <Wrapper>
         <Header />
-        <Body monthData={displayedMonthData} />
+        <Body />
         {true || body}
       </Wrapper>
     );

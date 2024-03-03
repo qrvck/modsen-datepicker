@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
 
-import { IFullMonth } from '../../../../utils/createFullMonth';
 import { ContextData } from '../../Context';
 import { CalendarDays } from './CalendarDays';
 import { CalendarMonths } from './CalendarMonths';
 import { CalendarYears } from './CalendarYears';
 import { DayNames } from './DayNames';
 
-interface IBodyProps {
-  monthData: IFullMonth;
-}
-
-class Body extends Component<IBodyProps> {
+class Body extends Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
@@ -41,7 +36,6 @@ class Body extends Component<IBodyProps> {
       params: { mode, displayedYear },
     } = this.context;
 
-    const { monthData } = this.props;
     const { onChangeMonth, onChangeYear } = this;
 
     return (
@@ -49,7 +43,7 @@ class Body extends Component<IBodyProps> {
         {mode === 'days' && (
           <>
             <DayNames firstDayOfWeek={firstDayOfWeek}></DayNames>
-            <CalendarDays currentMonth={monthData} />
+            <CalendarDays />
           </>
         )}
         {mode === 'months' && (

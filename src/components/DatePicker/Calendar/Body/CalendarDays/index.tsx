@@ -1,45 +1,32 @@
 import React, { Component } from 'react';
 
-import { checkIsCurrentDay, checkIsDayFromMonth } from '../../../../../utils/checkDay';
-import { IFullMonth } from '../../../../../utils/createFullMonth';
-import { DayCell, Wrapper } from './styled';
+import { ContextData } from '../../../Context';
+import { withCurrentDate } from './hoc/withCurrentDate';
+// import { withSingleSelect } from './hoc/withSingleSelect';
+import { Root } from './Root';
 
-interface ICalendarDays {
-  currentMonth: IFullMonth;
-}
+type IComponentHOC = typeof Root | ReturnType<typeof withCurrentDate>;
+// | ReturnType<typeof withSingleSelect>;
 
-function getClassNameForDayCell(isCurrentDay: boolean, isDayFromMonth: boolean) {
-  let className = '';
-
-  className = isCurrentDay ? 'current' : '';
-  className = !isDayFromMonth ? `${className} outside` : className;
-
-  return className;
-}
-
-class CalendarDays extends Component<ICalendarDays> {
-  createDayCells = () => {
-    const { allDays, monthIndex } = this.props.currentMonth;
-
-    return allDays.map((day) => {
-      const isCurrentDay = checkIsCurrentDay(day);
-      const isDayFromMonth = checkIsDayFromMonth(day, monthIndex);
-
-      return (
-        <DayCell
-          className={getClassNameForDayCell(isCurrentDay, isDayFromMonth)}
-          key={`${day.dayNumber} ${day.monthIndex}`}
-        >
-          {day.dayNumber}
-        </DayCell>
-      );
-    });
-  };
+class CalendarDays extends Component {
+  static contextType = ContextData;
+  declare context: React.ContextType<typeof ContextData>;
 
   render() {
-    const { createDayCells } = this;
+    const {
+      // config: { range },
+      params: { displayedMonthData },
+    } = this.context;
 
-    return <Wrapper>{...createDayCells()}</Wrapper>;
+    let ComponentHOC: IComponentHOC = Root;
+
+    // if (!range) {
+    //   ComponentHOC = withSingleSelect(ComponentHOC);
+    // }
+
+    ComponentHOC = withCurrentDate(ComponentHOC);
+
+    return <ComponentHOC displayedMonthData={displayedMonthData} />;
   }
 }
 
