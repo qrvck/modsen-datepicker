@@ -11,12 +11,12 @@ function withCurrentDate<T extends IRootProps>(PassedComponent: ComponentType<T>
 
     getClassNameForDay = (
       isCurrentDay: boolean,
-      isDayFromMonth: boolean,
+      // isDayFromMonth: boolean,
       prevClassName: string | undefined
     ) => {
       const className: string[] = [];
       if (isCurrentDay) className.push('current');
-      if (!isDayFromMonth) className.push('outside');
+      // if (!isDayFromMonth) className.push('outside');
       if (prevClassName) className.push(prevClassName);
 
       return className.join(' ');
@@ -32,11 +32,13 @@ function withCurrentDate<T extends IRootProps>(PassedComponent: ComponentType<T>
       const daysWithProps = displayedMonthData.allDays.map((day) => {
         const isCurrentDay = checkIsCurrentDay(day);
         const isDayFromMonth = checkIsDayFromMonth(day, displayedMonthIndex);
+        const prevIsDisabled = day.props.disabled || false;
+        const isDisabled = !isDayFromMonth || prevIsDisabled;
 
         const prevClassName = day.props.className;
-        const className = getClassNameForDay(isCurrentDay, isDayFromMonth, prevClassName);
+        const className = getClassNameForDay(isCurrentDay, prevClassName);
 
-        const dayWithProps = { ...day, props: { ...day.props, className } };
+        const dayWithProps = { ...day, props: { ...day.props, className, disabled: isDisabled } };
 
         return dayWithProps;
       });

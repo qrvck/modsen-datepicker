@@ -33,7 +33,6 @@ const DayCell = styled.button`
     }
   }
 
-  &.outside,
   &[disabled] {
     color: #aaaaaa;
     cursor: default;
