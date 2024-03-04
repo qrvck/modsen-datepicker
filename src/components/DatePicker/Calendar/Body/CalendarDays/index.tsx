@@ -1,40 +1,45 @@
 import React, { Component } from 'react';
 
+// import { IDay } from '../../../../../utils/createDay';
+// import { IFullMonth } from '../../../../../utils/createFullMonth';
 import { ContextData } from '../../../Context';
-import { withCurrentDate } from './hoc/withCurrentDate';
-import { withMinMaxDate } from './hoc/withMinMaxDate';
-import { withSingleSelect } from './hoc/withSingleSelect';
-import { Root } from './Root';
+import { DayCell } from './DayCell';
+import { Wrapper } from './styled';
 
-type IComponentHOC =
-  | typeof Root
-  | ReturnType<typeof withCurrentDate>
-  | ReturnType<typeof withMinMaxDate>
-  | ReturnType<typeof withSingleSelect>;
+// export interface IRootProps {
+//   displayedMonthData: IDisplayedMonthData;
+// }
 
-class CalendarDays extends Component {
+// interface IDisplayedMonthData extends IFullMonth {
+//   allDays: IDayWithProps[];
+// }
+
+// export interface IDayWithProps extends IDay {
+//   props: {
+//     onClick?: () => void;
+//     className?: string;
+//     disabled?: boolean;
+//   };
+// }
+
+class Root extends Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
+  createDayCells = () => {
+    const { allDays } = this.context.params.displayedMonthData;
+
+    return allDays.map((day) => {
+      return <DayCell day={day} key={`${day.dayNumber} ${day.monthIndex}`} />;
+    });
+  };
+
   render() {
-    const {
-      config: { range, minDate, maxDate },
-      params: { displayedMonthData },
-    } = this.context;
+    const { createDayCells } = this;
+    // console.log(this.props.displayedMonthData);
 
-    let ComponentHOC: IComponentHOC = Root;
-    ComponentHOC = withCurrentDate(ComponentHOC);
-
-    if (minDate || maxDate) {
-      ComponentHOC = withMinMaxDate(ComponentHOC);
-    }
-
-    if (!range) {
-      ComponentHOC = withSingleSelect(ComponentHOC);
-    }
-
-    return <ComponentHOC displayedMonthData={displayedMonthData} />;
+    return <Wrapper>{...createDayCells()}</Wrapper>;
   }
 }
 
-export { CalendarDays };
+export { Root };

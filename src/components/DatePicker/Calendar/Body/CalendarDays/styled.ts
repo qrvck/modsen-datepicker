@@ -5,54 +5,54 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const DayCell = styled.button`
-  width: 2.4em;
-  height: 2.4em;
+// const DayCell = styled.button`
+//   width: 2.4em;
+//   height: 2.4em;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
 
-  cursor: default;
-  font: inherit;
-  border: none;
-  background-color: transparent;
+//   cursor: default;
+//   font: inherit;
+//   border: none;
+//   background-color: transparent;
 
-  &.current {
-    background-color: orange;
-    border-radius: 8px;
-  }
+//   &.current {
+//     background-color: orange;
+//     border-radius: 8px;
+//   }
 
-  &.selectable {
-    cursor: pointer;
+//   &.selectable {
+//     cursor: pointer;
 
-    &:hover {
-      background: rgba(47, 128, 237, 0.1);
-      border-radius: 8px;
-      color: #2f80ed;
-    }
-  }
+//     &:hover {
+//       background: rgba(47, 128, 237, 0.1);
+//       border-radius: 8px;
+//       color: #2f80ed;
+//     }
+//   }
 
-  &[disabled] {
-    color: #aaaaaa;
-    cursor: default;
+//   &[disabled] {
+//     color: #aaaaaa;
+//     cursor: default;
 
-    &:hover {
-      background: transparent;
-      color: #aaaaaa;
-    }
-  }
+//     &:hover {
+//       background: transparent;
+//       color: #aaaaaa;
+//     }
+//   }
 
-  &.selected {
-    background: #2f80ed;
-    color: #ffffff;
-    border-radius: 8px;
+//   &.selected {
+//     background: #2f80ed;
+//     color: #ffffff;
+//     border-radius: 8px;
 
-    &:hover {
-      background: #2f80ed;
-      color: #ffffff;
-    }
-  }
-`;
+//     &:hover {
+//       background: #2f80ed;
+//       color: #ffffff;
+//     }
+//   }
+// `;
 
-export { DayCell, Wrapper };
+export { Wrapper };

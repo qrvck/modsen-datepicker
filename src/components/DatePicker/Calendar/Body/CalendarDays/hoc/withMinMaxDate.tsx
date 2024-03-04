@@ -2,7 +2,7 @@ import React, { Component, ComponentType } from 'react';
 
 import { checkIsDayGreaterDate, checkIsDayLessDate } from '../../../../../../utils/checkDay';
 import { ContextData } from '../../../../Context';
-import { IRootProps } from '../Root';
+import { IRootProps } from '..';
 
 function withMinMaxDate<T extends IRootProps>(PassedComponent: ComponentType<T>) {
   return class WithMinMaxDate extends Component<T> {

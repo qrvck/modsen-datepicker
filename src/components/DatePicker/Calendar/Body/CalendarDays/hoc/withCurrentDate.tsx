@@ -2,7 +2,7 @@ import React, { Component, ComponentType } from 'react';
 
 import { checkIsCurrentDay, checkIsDayFromMonth } from '../../../../../../utils/checkDay';
 import { ContextData } from '../../../../Context';
-import { IRootProps } from '../Root';
+import { IRootProps } from '..';
 
 function withCurrentDate<T extends IRootProps>(PassedComponent: ComponentType<T>) {
   return class WithSingleSelect extends Component<T> {

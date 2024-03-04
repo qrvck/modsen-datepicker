@@ -3,7 +3,7 @@ import React, { Component, ComponentType } from 'react';
 import { checkIsDayFromMonth } from '../../../../../../utils/checkDay';
 import { IDay } from '../../../../../../utils/createDay';
 import { ContextData } from '../../../../Context';
-import { IDayWithProps, IRootProps } from '../Root';
+import { IDayWithProps, IRootProps } from '..';
 
 function withSingleSelect<T extends IRootProps>(PassedComponent: ComponentType<T>) {
   return class WithSingleSelect extends Component<T> {
