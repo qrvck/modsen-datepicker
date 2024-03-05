@@ -27,4 +27,18 @@ function checkIsDayLessDate(day: IDay, date: Date) {
   return new Date(year, monthIndex, dayNumber) < date;
 }
 
-export { checkIsCurrentDay, checkIsDayFromMonth, checkIsDayGreaterDate, checkIsDayLessDate };
+function checkAreDaysEqual(day1: IDay, day2: IDay) {
+  return (
+    day1.dayNumber === day2.dayNumber &&
+    day1.monthIndex === day2.monthIndex &&
+    day1.year === day2.year
+  );
+}
+
+export {
+  checkAreDaysEqual,
+  checkIsCurrentDay,
+  checkIsDayFromMonth,
+  checkIsDayGreaterDate,
+  checkIsDayLessDate,
+};
