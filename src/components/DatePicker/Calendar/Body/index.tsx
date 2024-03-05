@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { ContextData } from '../../Context';
-import { CalendarDays } from './CalendarDays/old-index';
+import { CalendarDays } from './CalendarDays';
 import { CalendarMonths } from './CalendarMonths';
 import { CalendarYears } from './CalendarYears';
 import { DayNames } from './DayNames';
