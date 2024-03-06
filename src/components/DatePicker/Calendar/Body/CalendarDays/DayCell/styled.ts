@@ -28,6 +28,10 @@ const Cell = styled.button`
     }
   }
 
+  &.weekend {
+    color: red;
+  }
+
   &[disabled] {
     color: #aaaaaa;
     cursor: default;

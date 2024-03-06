@@ -11,6 +11,7 @@ interface IDatePickerProps {
   withHolidays?: boolean;
   maxDate?: Date;
   minDate?: Date;
+  weekends?: boolean;
 }
 
 function DatePicker({
@@ -18,6 +19,7 @@ function DatePicker({
   range = false,
   todoList = false,
   withHolidays = false,
+  weekends = false,
   maxDate,
   minDate,
 }: IDatePickerProps) {
@@ -29,6 +31,7 @@ function DatePicker({
       maxDate={maxDate}
       minDate={minDate}
       withHolidays={withHolidays}
+      weekends={weekends}
     >
       <Input />
       <Calendar />

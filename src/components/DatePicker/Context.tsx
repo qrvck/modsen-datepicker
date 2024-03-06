@@ -11,6 +11,7 @@ interface IContextProps {
   maxDate?: Date;
   minDate?: Date;
   withHolidays: boolean;
+  weekends: boolean;
 }
 
 export interface IContextData {
@@ -21,6 +22,7 @@ export interface IContextData {
     maxDate?: Date;
     minDate?: Date;
     withHolidays: boolean;
+    weekends: boolean;
   };
 
   params: {
@@ -46,6 +48,7 @@ const ContextData = createContext<IContextData>({
     range: false,
     todoList: false,
     withHolidays: false,
+    weekends: false,
   },
 
   params: {
@@ -72,6 +75,7 @@ function Context({
   withHolidays,
   maxDate,
   minDate,
+  weekends,
 }: IContextProps) {
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days');
   const [displayedMonthIndex, setDisplayedMonthIndex] = useState<number>(new Date().getMonth());
@@ -96,6 +100,7 @@ function Context({
       withHolidays,
       maxDate,
       minDate,
+      weekends,
     },
 
     params: {
