@@ -6,6 +6,7 @@ import { Cell } from './styled';
 export interface IRootProps {
   day: IDay;
   className?: string;
+  title?: string;
   disabled?: boolean;
   onClick?: () => void;
   onHover?: () => void;

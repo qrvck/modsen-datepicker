@@ -10,7 +10,7 @@ interface IContextProps {
   todoList: boolean;
   maxDate?: Date;
   minDate?: Date;
-  withHolidays: boolean;
+  holidays: boolean;
   weekends: boolean;
 }
 
@@ -21,7 +21,7 @@ export interface IContextData {
     todoList: boolean;
     maxDate?: Date;
     minDate?: Date;
-    withHolidays: boolean;
+    holidays: boolean;
     weekends: boolean;
   };
 
@@ -47,7 +47,7 @@ const ContextData = createContext<IContextData>({
     firstDayOfWeek: 'monday',
     range: false,
     todoList: false,
-    withHolidays: false,
+    holidays: false,
     weekends: false,
   },
 
@@ -72,7 +72,7 @@ function Context({
   firstDayOfWeek,
   range,
   todoList,
-  withHolidays,
+  holidays,
   maxDate,
   minDate,
   weekends,
@@ -97,7 +97,7 @@ function Context({
       firstDayOfWeek,
       range,
       todoList,
-      withHolidays,
+      holidays,
       maxDate,
       minDate,
       weekends,

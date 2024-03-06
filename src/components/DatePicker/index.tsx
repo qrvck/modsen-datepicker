@@ -8,7 +8,7 @@ interface IDatePickerProps {
   firstDayOfWeek?: 'sunday' | 'monday';
   range?: boolean;
   todoList?: boolean;
-  withHolidays?: boolean;
+  holidays?: boolean;
   maxDate?: Date;
   minDate?: Date;
   weekends?: boolean;
@@ -18,7 +18,7 @@ function DatePicker({
   firstDayOfWeek = 'monday',
   range = false,
   todoList = false,
-  withHolidays = false,
+  holidays = false,
   weekends = false,
   maxDate,
   minDate,
@@ -30,7 +30,7 @@ function DatePicker({
       todoList={todoList}
       maxDate={maxDate}
       minDate={minDate}
-      withHolidays={withHolidays}
+      holidays={holidays}
       weekends={weekends}
     >
       <Input />

@@ -28,7 +28,8 @@ const Cell = styled.button`
     }
   }
 
-  &.weekend {
+  &.weekend,
+  &.holiday {
     color: red;
   }
 
