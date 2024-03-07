@@ -10,6 +10,7 @@ export interface IRootProps {
   disabled?: boolean;
   onClick?: () => void;
   onHover?: () => void;
+  onContextMenu?: () => void;
 }
 
 class Root extends Component<IRootProps> {

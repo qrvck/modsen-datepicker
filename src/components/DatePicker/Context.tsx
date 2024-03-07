@@ -40,6 +40,11 @@ export interface IContextData {
     selectedDay?: IDay;
     changeSelectedDay: (day: IDay) => void;
   };
+
+  todoList: {
+    selectedDay: IDay | null;
+    changeSelectedDay: (day: IDay | null) => void;
+  };
 }
 
 const ContextData = createContext<IContextData>({
@@ -65,6 +70,11 @@ const ContextData = createContext<IContextData>({
   singleSelect: {
     changeSelectedDay: () => {},
   },
+
+  todoList: {
+    selectedDay: null,
+    changeSelectedDay: () => {},
+  },
 });
 
 function Context({
@@ -85,6 +95,7 @@ function Context({
   );
 
   const [selectedDay, setSelectedDay] = useState<IDay | undefined>(undefined);
+  const [selectedDayOfTodoList, setSelectedDayOfTodoList] = useState<IDay | null>(null);
 
   useLayoutEffect(() => {
     setDisplayedMonthData(
@@ -118,6 +129,11 @@ function Context({
     singleSelect: {
       selectedDay,
       changeSelectedDay: (day: IDay) => setSelectedDay(day),
+    },
+
+    todoList: {
+      selectedDay: selectedDayOfTodoList,
+      changeSelectedDay: (day: IDay | null) => setSelectedDayOfTodoList(day),
     },
   };
 

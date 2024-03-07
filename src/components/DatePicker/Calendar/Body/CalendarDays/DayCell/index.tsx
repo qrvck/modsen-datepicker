@@ -6,6 +6,7 @@ import { withCurrentDate } from './hoc/withCurrentDate';
 import { withHolidays } from './hoc/withHolidays';
 import { withMinMaxDate } from './hoc/withMinMaxDate';
 import { withSingleSelect } from './hoc/withSingleSelect';
+import { withTodoList } from './hoc/withTodoList';
 import { withWeekends } from './hoc/withWeekends';
 import { Root } from './Root';
 
@@ -24,7 +25,7 @@ class DayCell extends Component<IDayCellProps> {
 
   render() {
     const { day } = this.props;
-    const { minDate, maxDate, range, weekends, holidays } = this.context.config;
+    const { minDate, maxDate, range, weekends, holidays, todoList } = this.context.config;
 
     let ComponentHOC: IComponentHOC = Root;
     ComponentHOC = withCurrentDate(ComponentHOC);
@@ -35,6 +36,7 @@ class DayCell extends Component<IDayCellProps> {
 
     if (weekends) ComponentHOC = withWeekends(ComponentHOC);
     if (holidays) ComponentHOC = withHolidays(ComponentHOC);
+    if (todoList) ComponentHOC = withTodoList(ComponentHOC);
 
     if (!range) {
       ComponentHOC = withSingleSelect(ComponentHOC);
