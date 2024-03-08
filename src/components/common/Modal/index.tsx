@@ -1,7 +1,7 @@
 import React, { Component, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 
-import { Background, Window } from './styled';
+import { Background, CloseButton, InnerBackground, Window } from './styled';
 
 interface IModalProps {
   children: ReactNode;
@@ -9,7 +9,7 @@ interface IModalProps {
 }
 
 class Modal extends Component<IModalProps> {
-  appRoot = document.querySelector('#root');
+  appRoot = document.querySelector('body');
 
   render() {
     const { children, onClose } = this.props;
@@ -18,8 +18,11 @@ class Modal extends Component<IModalProps> {
     if (appRoot) {
       return ReactDOM.createPortal(
         <Background>
-          <button onClick={() => onClose()}>x</button>
-          <Window>{children}</Window>
+          <InnerBackground onClick={onClose} />
+          <Window>
+            <CloseButton onClick={onClose}>X</CloseButton>
+            {children}
+          </Window>
         </Background>,
         appRoot
       );
