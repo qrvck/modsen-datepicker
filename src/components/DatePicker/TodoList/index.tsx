@@ -1,22 +1,106 @@
-import React, { Component } from 'react';
+import React, { ChangeEvent, Component, createRef, KeyboardEvent } from 'react';
 
+import { IDay } from '../../../utils/createDay';
 import { Modal } from '../../common/Modal';
 import { ContextData } from '../Context';
-import { Title } from './styled';
+import {
+  AddButton,
+  AddInput,
+  AddInputWrapper,
+  HintMessage,
+  Item,
+  List,
+  RemoveButton,
+  Title,
+} from './styled';
+import { ITodoItem, todoStorage } from './todoStorage';
 
-class TodoList extends Component {
+interface ITodoListState {
+  addInputValue: string;
+  selectedDay: IDay | null;
+  todoList: ITodoItem[] | null;
+}
+
+class TodoList extends Component<object, ITodoListState> {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
+  state: ITodoListState = {
+    addInputValue: '',
+    selectedDay: null,
+    todoList: null,
+  };
+
+  listRef = createRef<HTMLUListElement>();
+
+  componentDidUpdate(prevProps: object, prevState: ITodoListState) {
+    const { selectedDay } = this.context.todoList;
+
+    if (prevState.selectedDay !== selectedDay) {
+      this.setState({
+        selectedDay,
+        todoList: todoStorage.getList(selectedDay),
+      });
+    }
+  }
+
   handleOnClose = () => {
     this.context.todoList.changeSelectedDay(null);
+    this.setState({ addInputValue: '', selectedDay: null, todoList: null });
+  };
+
+  handleChangeAddInput = (e: ChangeEvent<HTMLInputElement>) => {
+    this.setState({ addInputValue: e.target.value });
+  };
+
+  handleOnKeyDownAddInput = (e: KeyboardEvent<HTMLInputElement>) => {
+    const { addInputValue } = this.state;
+
+    if (e.code === 'Enter' && addInputValue) {
+      this.handleClickOnAddButton();
+    }
+  };
+
+  handleClickOnAddButton = () => {
+    const { addInputValue, selectedDay, todoList } = this.state;
+    const list = this.listRef.current;
+
+    if (todoList && selectedDay && list) {
+      const item = { desc: addInputValue, uuid: crypto.randomUUID() };
+      this.setState({ addInputValue: '', todoList: todoList.concat(item) });
+      todoStorage.setItem(selectedDay, item);
+
+      setTimeout(() => {
+        const lastItem = list.lastElementChild;
+        if (lastItem) lastItem.scrollIntoView({ block: 'end', behavior: 'smooth' });
+      }, 0);
+    }
+  };
+
+  handleClickOnRemoveButton = (itemIndex: number) => {
+    const { todoList, selectedDay } = this.state;
+
+    if (todoList && selectedDay) {
+      const newTodoList = todoList.slice();
+      newTodoList.splice(itemIndex, 1);
+      this.setState({ todoList: newTodoList });
+      todoStorage.removeItem(selectedDay, itemIndex);
+    }
   };
 
   render() {
     const { selectedDay } = this.context.todoList;
-    const { handleOnClose } = this;
+    const { addInputValue, todoList } = this.state;
+    const { listRef } = this;
+    const {
+      handleOnClose,
+      handleChangeAddInput,
+      handleClickOnAddButton,
+      handleOnKeyDownAddInput,
+      handleClickOnRemoveButton,
+    } = this;
 
-    if (selectedDay) {
+    if (selectedDay && todoList) {
       const { dayNumber, monthName, year } = selectedDay;
 
       return (
@@ -24,7 +108,36 @@ class TodoList extends Component {
           <Title>
             <b>TODOLIST</b> {`${dayNumber} ${monthName} ${year}`}
           </Title>
-          {/* <p>{`${dayNumber} ${monthName} ${year}`}</p> */}
+
+          <AddInputWrapper>
+            <AddInput
+              value={addInputValue}
+              onChange={handleChangeAddInput}
+              onKeyDown={handleOnKeyDownAddInput}
+            />
+            <AddButton onClick={handleClickOnAddButton} disabled={!addInputValue}>
+              add
+            </AddButton>
+          </AddInputWrapper>
+
+          {!!todoList.length && (
+            <List ref={listRef}>
+              {todoList.map(({ desc, uuid }, index) => (
+                <Item key={uuid}>
+                  {desc}
+                  <RemoveButton onClick={() => handleClickOnRemoveButton(index)}>
+                    remove
+                  </RemoveButton>
+                </Item>
+              ))}
+            </List>
+          )}
+
+          {todoList.length ? (
+            <HintMessage>Amount: {todoList.length + 1}</HintMessage>
+          ) : (
+            <HintMessage>Nothing is scheduled!</HintMessage>
+          )}
         </Modal>
       );
     } else {

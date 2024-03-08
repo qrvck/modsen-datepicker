@@ -48,7 +48,7 @@ function withTodoList<T extends IRootProps>(PassedComponent: ComponentType<T>) {
         return (e: MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           changeSelectedDay(day);
-          console.log(day);
+          // console.log(day);
         };
       }
     };
