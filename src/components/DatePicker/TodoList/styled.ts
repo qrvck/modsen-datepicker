@@ -40,6 +40,8 @@ const Item = styled.li`
   position: relative;
   padding: 0.3em 0;
 
+  overflow: hidden;
+
   &:nth-child(2n - 1) {
     background-color: #dddddd;
   }

@@ -65,11 +65,13 @@ class TodoList extends Component<object, ITodoListState> {
     const { addInputValue, selectedDay, todoList } = this.state;
     const list = this.listRef.current;
 
-    if (todoList && selectedDay && list) {
+    if (todoList && selectedDay) {
       const item = { desc: addInputValue, uuid: crypto.randomUUID() };
       this.setState({ addInputValue: '', todoList: todoList.concat(item) });
       todoStorage.setItem(selectedDay, item);
+    }
 
+    if (list) {
       setTimeout(() => {
         const lastItem = list.lastElementChild;
         if (lastItem) lastItem.scrollIntoView({ block: 'end', behavior: 'smooth' });
@@ -134,7 +136,7 @@ class TodoList extends Component<object, ITodoListState> {
           )}
 
           {todoList.length ? (
-            <HintMessage>Amount: {todoList.length + 1}</HintMessage>
+            <HintMessage>Amount: {todoList.length}</HintMessage>
           ) : (
             <HintMessage>Nothing is scheduled!</HintMessage>
           )}
