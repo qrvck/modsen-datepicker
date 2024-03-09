@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Calendar } from './Calendar';
 import { Context } from './Context';
-import { Input } from './Input';
+import { DateInput } from './DateInput';
 
 interface IDatePickerProps {
   firstDayOfWeek?: 'sunday' | 'monday';
@@ -33,7 +33,7 @@ function DatePicker({
       holidays={holidays}
       weekends={weekends}
     >
-      <Input />
+      <DateInput />
       <Calendar />
     </Context>
   );
