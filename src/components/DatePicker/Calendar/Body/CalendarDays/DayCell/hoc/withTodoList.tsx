@@ -3,30 +3,13 @@ import React, { Component, ComponentType, MouseEvent } from 'react';
 import { checkIsDayFromMonth } from '../../../../../../../utils/checkDay';
 import { IDay } from '../../../../../../../utils/createDay';
 import { ContextData } from '../../../../../Context';
+import { todoStorage } from '../../../../../TodoList/todoStorage';
 import { IRootProps } from '../Root';
 
 function withTodoList<T extends IRootProps>(PassedComponent: ComponentType<T>) {
   return class WithTodoList extends Component<T> {
     static contextType = ContextData;
     declare context: React.ContextType<typeof ContextData>;
-
-    getOnContextMenuForSelectableDay = (day: IDay, prevOnContextMenu: (() => void) | undefined) => {
-      const { changeSelectedDay } = this.context.todoList;
-
-      if (prevOnContextMenu) {
-        return (e: MouseEvent<HTMLButtonElement>) => {
-          e.preventDefault();
-          prevOnContextMenu();
-          changeSelectedDay(day);
-        };
-      } else {
-        return (e: MouseEvent<HTMLButtonElement>) => {
-          e.preventDefault();
-          changeSelectedDay(day);
-          console.log(day);
-        };
-      }
-    };
 
     getOnContextMenuForDay = (
       day: IDay,
@@ -48,20 +31,36 @@ function withTodoList<T extends IRootProps>(PassedComponent: ComponentType<T>) {
         return (e: MouseEvent<HTMLButtonElement>) => {
           e.preventDefault();
           changeSelectedDay(day);
-          // console.log(day);
         };
+      }
+    };
+
+    getClassNameForDay = (
+      prevClassName: string | undefined,
+      isDayFromMonth: boolean,
+      day: IDay
+    ) => {
+      if (isDayFromMonth) {
+        const className: string[] = [];
+        const hasTodoItems = todoStorage.checkDayHasTodoItems(day);
+
+        if (hasTodoItems) className.push('hasTodo');
+        if (prevClassName) className.push(prevClassName);
+
+        return className.join(' ');
       }
     };
 
     getProps = () => {
       const { displayedMonthIndex } = this.context.params;
-      const { day, onContextMenu } = this.props;
-      const { getOnContextMenuForDay } = this;
+      const { day, onContextMenu, className } = this.props;
+      const { getOnContextMenuForDay, getClassNameForDay } = this;
 
       const isDayFromMonth = checkIsDayFromMonth(day, displayedMonthIndex);
       const newOnContextMenu = getOnContextMenuForDay(day, isDayFromMonth, onContextMenu);
+      const newClassName = getClassNameForDay(className, isDayFromMonth, day);
 
-      return { onContextMenu: newOnContextMenu };
+      return { onContextMenu: newOnContextMenu, className: newClassName };
     };
 
     render() {

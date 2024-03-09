@@ -1,15 +1,3 @@
-// interface ITodoLists {
-//   [year: string]:
-//     | {
-//         [monthIndex: string]:
-//           | {
-//               [day: string]: ITodoItem[] | undefined;
-//             }
-//           | undefined;
-//       }
-//     | undefined;
-// }
-
 import { IDay } from '../../../utils/createDay';
 
 interface ITodoLists {
@@ -77,6 +65,14 @@ class todoStorage {
 
       localStorage.setItem('modsen-Datepicker-todo-lists', JSON.stringify(todoLists));
     }
+  }
+
+  static checkDayHasTodoItems(day: IDay) {
+    const { todoLists } = this;
+    const { dayNumber, monthIndex, year } = day;
+    const key = `${dayNumber}/${monthIndex}/${year}`;
+
+    return Boolean(todoLists[key]);
   }
 }
 

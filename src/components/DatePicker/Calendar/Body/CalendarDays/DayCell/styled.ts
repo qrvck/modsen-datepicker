@@ -33,6 +33,24 @@ const Cell = styled.button`
     color: red;
   }
 
+  &.hasTodo {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0.3em;
+      right: 0.3em;
+
+      width: 0.5em;
+      height: 0.5em;
+
+      background-color: mediumpurple;
+      border-radius: 50%;
+
+      content: '';
+    }
+  }
+
   &[disabled] {
     color: #aaaaaa;
     cursor: default;
