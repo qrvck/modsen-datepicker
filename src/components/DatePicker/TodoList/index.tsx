@@ -1,5 +1,6 @@
 import React, { ChangeEvent, Component, createRef, KeyboardEvent } from 'react';
 
+import sprite from '../../../assets/sprite.svg';
 import { IDay } from '../../../utils/createDay';
 import { Modal } from '../../common/Modal';
 import { ContextData } from '../Context';
@@ -11,6 +12,7 @@ import {
   Item,
   List,
   RemoveButton,
+  Svg,
   Title,
 } from './styled';
 import { ITodoItem, todoStorage } from './todoStorage';
@@ -118,7 +120,9 @@ class TodoList extends Component<object, ITodoListState> {
               onKeyDown={handleOnKeyDownAddInput}
             />
             <AddButton onClick={handleClickOnAddButton} disabled={!addInputValue}>
-              add
+              <Svg>
+                <use href={sprite + '#add'} />
+              </Svg>
             </AddButton>
           </AddInputWrapper>
 
@@ -128,7 +132,9 @@ class TodoList extends Component<object, ITodoListState> {
                 <Item key={uuid}>
                   {desc}
                   <RemoveButton onClick={() => handleClickOnRemoveButton(index)}>
-                    remove
+                    <Svg>
+                      <use href={sprite + '#remove'} />
+                    </Svg>
                   </RemoveButton>
                 </Item>
               ))}

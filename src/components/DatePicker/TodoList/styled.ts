@@ -17,7 +17,7 @@ const AddInputWrapper = styled.div`
 
 const AddInput = styled.input`
   width: 100%;
-  padding: 0.5em 1em;
+  padding: 0.5em 2.1em 0.5em 1em;
 
   border: 1px solid #dddddd;
   border-radius: 8px;
@@ -27,8 +27,14 @@ const AddInput = styled.input`
 const AddButton = styled.button`
   position: absolute;
   top: 50%;
-  right: 0;
+  right: 0.4em;
+
+  padding: 0.3em;
+
   transform: translateY(-50%);
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 `;
 
 const List = styled.ul`
@@ -48,13 +54,20 @@ const Item = styled.li`
 `;
 
 const RemoveButton = styled.button`
-  display: none;
+  position: absolute;
+  top: 0.1em;
+  right: 0.1em;
+
+  padding: 0;
+
+  visibility: hidden;
+  border: none;
+  border-radius: 50%;
+  background-color: #ffffff;
+  cursor: pointer;
 
   ${Item}:hover & {
-    position: absolute;
-    right: 0;
-    top: 0;
-    display: block;
+    visibility: visible;
   }
 `;
 
@@ -63,4 +76,16 @@ const HintMessage = styled.p`
   text-decoration: underline;
 `;
 
-export { AddButton, AddInput, AddInputWrapper, HintMessage, Item, List, RemoveButton, Title };
+const Svg = styled.svg`
+  width: 1.7em;
+  height: 1.7em;
+  color: #000000;
+  vertical-align: bottom;
+
+  ${AddButton}:hover &,
+  ${RemoveButton}:hover & {
+    color: #2f80ed;
+  }
+`;
+
+export { AddButton, AddInput, AddInputWrapper, HintMessage, Item, List, RemoveButton, Svg, Title };
