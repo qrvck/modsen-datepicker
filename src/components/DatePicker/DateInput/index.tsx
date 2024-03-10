@@ -1,103 +1,29 @@
-import React, { Component, KeyboardEvent } from 'react';
+import React, { Component } from 'react';
 
-import sprite from '../../../assets/sprite.svg';
-import { createDay } from '../../../utils/createDay';
-import { Calendar } from '../Calendar';
 import { ContextData } from '../Context';
-import { CalendarButton, ClearButton, Input, InputWrapper, Svg } from './styled';
+import { withSingleSelect } from './hoc/withSingleSelect';
+import { Root } from './Root';
+
+type IComponentHOC = typeof Root | ReturnType<typeof withSingleSelect>;
 
 class DateInput extends Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
-  state = {
-    inputValue: '',
-    selectedDay: null,
-  };
+  Component = this.configureComponent();
 
-  componentDidUpdate() {
-    const { selectedDay } = this.context.singleSelect;
+  configureComponent() {
+    let ComponentHOC: IComponentHOC = Root;
+    ComponentHOC = withSingleSelect(ComponentHOC);
 
-    if (this.state.selectedDay !== selectedDay && selectedDay) {
-      const { fullDayNumber, fullMonthNumber, year } = selectedDay;
-      const value = `${fullDayNumber}/${fullMonthNumber}/${year}`;
-      this.setState({ inputValue: value, selectedDay });
-    }
+    return ComponentHOC;
   }
 
-  handleOnKeyDownInput = (e: KeyboardEvent) => {
-    const { inputValue } = this.state;
-    const { changeSelectedDay } = this.context.singleSelect;
-    const { changeIsOpenCalendar } = this.context.params;
-    const { key } = e;
-    const numbers = '1234567890';
-    let mask = 'xx/xx/xxxx';
-    const maskLength = 10;
-    let value = inputValue.replace(/\//g, '');
-
-    if (numbers.includes(key) && inputValue.length <= maskLength) {
-      value = value + key;
-    } else if (key === 'Backspace') {
-      value = value.slice(0, value.length - 1);
-    }
-
-    value.split('').forEach((number) => (mask = mask.replace('x', number)));
-    const indexOfLastMaskItem = mask.indexOf('x');
-    mask = indexOfLastMaskItem !== -1 ? mask.slice(0, indexOfLastMaskItem) : mask;
-
-    this.setState({ inputValue: mask });
-
-    if (mask.length === maskLength) {
-      const [inputDayNumber, inputMonthNumber, inputYear] = mask.split('/').map((i) => Number(i));
-      const day = createDay(new Date(inputYear, inputMonthNumber - 1, inputDayNumber));
-      const value = `${day.fullDayNumber}/${day.fullMonthNumber}/${day.year}`;
-
-      this.setState({ inputValue: value });
-      changeSelectedDay(day);
-      changeIsOpenCalendar(false);
-    } else {
-      this.setState({ selectedDay: null });
-      changeSelectedDay(null);
-    }
-  };
-
-  handleClickOnCalendarButton = () => {
-    const { isOpenCalendar, changeIsOpenCalendar } = this.context.params;
-    changeIsOpenCalendar(!isOpenCalendar);
-  };
-
-  handleClickOnClearButton = () => {
-    const { changeSelectedDay } = this.context.singleSelect;
-    changeSelectedDay(null);
-    this.setState({ inputValue: '', selectedDay: null });
-  };
-
   render() {
-    const { handleClickOnCalendarButton, handleClickOnClearButton, handleOnKeyDownInput } = this;
-    const { inputValue } = this.state;
-    const {
-      params: { isOpenCalendar },
-    } = this.context;
+    // const { range } = this.context.config;
+    const { Component } = this;
 
-    return (
-      <InputWrapper>
-        <CalendarButton onClick={handleClickOnCalendarButton}>
-          <Svg>
-            <use href={sprite + '#calendar'} />
-          </Svg>
-        </CalendarButton>
-
-        <Input value={inputValue} onKeyDown={handleOnKeyDownInput} readOnly />
-
-        <ClearButton disabled={!inputValue} onClick={handleClickOnClearButton}>
-          <Svg>
-            <use href={sprite + '#clear'} />
-          </Svg>
-        </ClearButton>
-
-        <Calendar isOpen={isOpenCalendar} />
-      </InputWrapper>
-    );
+    return <Component />;
   }
 }
 
