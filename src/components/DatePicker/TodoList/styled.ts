@@ -39,12 +39,15 @@ const AddButton = styled.button`
 
 const List = styled.ul`
   max-height: 60vh;
+
   overflow-y: auto;
+  list-style: none;
+  padding: 0;
 `;
 
 const Item = styled.li`
   position: relative;
-  padding: 0.3em 0;
+  padding: 0.3em;
 
   overflow: hidden;
 

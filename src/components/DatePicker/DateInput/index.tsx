@@ -1,17 +1,12 @@
 import React, { Component, KeyboardEvent } from 'react';
 
 import sprite from '../../../assets/sprite.svg';
-import { createDay, IDay } from '../../../utils/createDay';
+import { createDay } from '../../../utils/createDay';
 import { Calendar } from '../Calendar';
 import { ContextData } from '../Context';
 import { CalendarButton, ClearButton, Input, InputWrapper, Svg } from './styled';
 
-interface IDateInputState {
-  inputValue: string;
-  selectedDay: IDay | null;
-}
-
-class DateInput extends Component<object, IDateInputState> {
+class DateInput extends Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
@@ -20,10 +15,10 @@ class DateInput extends Component<object, IDateInputState> {
     selectedDay: null,
   };
 
-  componentDidUpdate(prevProps: object, prevState: Readonly<IDateInputState>) {
+  componentDidUpdate() {
     const { selectedDay } = this.context.singleSelect;
 
-    if (prevState.selectedDay !== selectedDay && selectedDay) {
+    if (this.state.selectedDay !== selectedDay && selectedDay) {
       const { fullDayNumber, fullMonthNumber, year } = selectedDay;
       const value = `${fullDayNumber}/${fullMonthNumber}/${year}`;
       this.setState({ inputValue: value, selectedDay });
@@ -92,7 +87,7 @@ class DateInput extends Component<object, IDateInputState> {
           </Svg>
         </CalendarButton>
 
-        <Input value={inputValue} onKeyDown={handleOnKeyDownInput} />
+        <Input value={inputValue} onKeyDown={handleOnKeyDownInput} readOnly />
 
         <ClearButton disabled={!inputValue} onClick={handleClickOnClearButton}>
           <Svg>

@@ -35,10 +35,10 @@ class TodoList extends Component<object, ITodoListState> {
 
   listRef = createRef<HTMLUListElement>();
 
-  componentDidUpdate(prevProps: object, prevState: ITodoListState) {
+  componentDidUpdate() {
     const { selectedDay } = this.context.todoList;
 
-    if (prevState.selectedDay !== selectedDay) {
+    if (this.state.selectedDay !== selectedDay) {
       this.setState({
         selectedDay,
         todoList: todoStorage.getList(selectedDay),
