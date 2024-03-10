@@ -43,6 +43,13 @@ export interface IContextData {
     changeSelectedDay: (day: IDay | null) => void;
   };
 
+  rangleSelect: {
+    firstSelectedDay: IDay | null;
+    secondSelectedDay: IDay | null;
+    changeFirstSelectedDay: (day: IDay | null) => void;
+    changeSecondSelectedDay: (day: IDay | null) => void;
+  };
+
   todoList: {
     selectedDay: IDay | null;
     changeSelectedDay: (day: IDay | null) => void;
@@ -76,6 +83,13 @@ const ContextData = createContext<IContextData>({
     changeSelectedDay: () => {},
   },
 
+  rangleSelect: {
+    firstSelectedDay: null,
+    secondSelectedDay: null,
+    changeFirstSelectedDay() {},
+    changeSecondSelectedDay() {},
+  },
+
   todoList: {
     selectedDay: null,
     changeSelectedDay: () => {},
@@ -101,6 +115,13 @@ function Context({
   );
 
   const [selectedDayOfSingleSelect, setSelectedDayOfSingleSelect] = useState<IDay | null>(null);
+
+  const [firstSelectedDayOfRangeSelect, setFirstSelectedDayOfRangeSelect] = useState<IDay | null>(
+    null
+  );
+  const [secondSelectedDayOfRangeSelect, setSecondSelectedDayOfRangeSelect] = useState<IDay | null>(
+    null
+  );
 
   const [selectedDayOfTodoList, setSelectedDayOfTodoList] = useState<IDay | null>(null);
 
@@ -138,6 +159,13 @@ function Context({
     singleSelect: {
       selectedDay: selectedDayOfSingleSelect,
       changeSelectedDay: (day: IDay | null) => setSelectedDayOfSingleSelect(day),
+    },
+
+    rangleSelect: {
+      firstSelectedDay: firstSelectedDayOfRangeSelect,
+      secondSelectedDay: secondSelectedDayOfRangeSelect,
+      changeFirstSelectedDay: (day: IDay | null) => setFirstSelectedDayOfRangeSelect(day),
+      changeSecondSelectedDay: (day: IDay | null) => setSecondSelectedDayOfRangeSelect(day),
     },
 
     todoList: {
