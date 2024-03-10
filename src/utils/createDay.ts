@@ -3,10 +3,12 @@ import { createDate } from './createDate';
 function createDay(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'monday') {
   const {
     dayNumber,
+    fullDayNumber,
     dayName,
     shortDayName,
     dayNumberInWeek,
     monthNumber,
+    fullMonthNumber,
     monthIndex,
     monthName,
     year,
@@ -14,10 +16,12 @@ function createDay(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'monday') {
 
   return {
     dayNumber,
+    fullDayNumber,
     dayName,
     shortDayName,
     dayNumberInWeek,
     monthNumber,
+    fullMonthNumber,
     monthIndex,
     monthName,
     year,
