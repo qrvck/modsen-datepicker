@@ -6,21 +6,31 @@ import { Body } from './Body';
 import { Header } from './Header';
 import { Wrapper } from './styled';
 
-class Calendar extends React.Component {
+interface ICalendarProps {
+  isOpen: boolean;
+}
+
+class Calendar extends React.Component<ICalendarProps> {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
   render() {
-    return (
-      <>
-        <Wrapper>
-          <Header />
-          <Body />
-        </Wrapper>
+    const { isOpen } = this.props;
 
-        <TodoList />
-      </>
-    );
+    if (isOpen) {
+      return (
+        <>
+          <Wrapper>
+            <Header />
+            <Body />
+          </Wrapper>
+
+          <TodoList />
+        </>
+      );
+    } else {
+      return null;
+    }
   }
 }
 

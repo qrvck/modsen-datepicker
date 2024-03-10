@@ -1,6 +1,5 @@
 import React from 'react';
 
-import { Calendar } from './Calendar';
 import { Context } from './Context';
 import { DateInput } from './DateInput';
 
@@ -34,7 +33,6 @@ function DatePicker({
       weekends={weekends}
     >
       <DateInput />
-      <Calendar />
     </Context>
   );
 }

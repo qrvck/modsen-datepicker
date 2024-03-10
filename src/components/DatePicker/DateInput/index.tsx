@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 
 import sprite from '../../../assets/sprite.svg';
+import { Calendar } from '../Calendar';
 import { ContextData } from '../Context';
 import { CalendarButton, ClearButton, Input, InputWrapper, Svg } from './styled';
 
 class DateInput extends Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
+
+  state = {
+    isOpenCalendar: false,
+  };
 
   getValue = () => {
     const { selectedDay } = this.context.singleSelect;
@@ -19,13 +24,19 @@ class DateInput extends Component {
     }
   };
 
+  handleClickOnCalendarButton = () => {
+    const { isOpenCalendar } = this.state;
+    this.setState({ isOpenCalendar: !isOpenCalendar });
+  };
+
   render() {
-    const { getValue } = this;
+    const { getValue, handleClickOnCalendarButton } = this;
+    const { isOpenCalendar } = this.state;
     console.log(getValue());
 
     return (
       <InputWrapper>
-        <CalendarButton>
+        <CalendarButton onClick={handleClickOnCalendarButton}>
           <Svg>
             <use href={sprite + '#calendar'} />
           </Svg>
@@ -38,6 +49,8 @@ class DateInput extends Component {
             <use href={sprite + '#clear'} />
           </Svg>
         </ClearButton>
+
+        <Calendar isOpen={isOpenCalendar} />
       </InputWrapper>
     );
   }
