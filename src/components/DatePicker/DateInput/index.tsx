@@ -9,10 +9,6 @@ class DateInput extends Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
-  state = {
-    isOpenCalendar: false,
-  };
-
   getValue = () => {
     const { selectedDay } = this.context.singleSelect;
 
@@ -25,21 +21,21 @@ class DateInput extends Component {
   };
 
   handleClickOnCalendarButton = () => {
-    const { isOpenCalendar } = this.state;
-    this.setState({ isOpenCalendar: !isOpenCalendar });
+    const { isOpenCalendar, changeIsOpenCalendar } = this.context.params;
+    changeIsOpenCalendar(!isOpenCalendar);
   };
 
   handleClickOnClearButton = () => {
     const { changeSelectedDay } = this.context.singleSelect;
-    // this.setState({ isOpenCalendar:  });
     changeSelectedDay(null);
   };
 
   render() {
     const { getValue, handleClickOnCalendarButton, handleClickOnClearButton } = this;
-    const { selectedDay } = this.context.singleSelect;
-    const { isOpenCalendar } = this.state;
-    console.log(getValue());
+    const {
+      singleSelect: { selectedDay },
+      params: { isOpenCalendar },
+    } = this.context;
 
     return (
       <InputWrapper>

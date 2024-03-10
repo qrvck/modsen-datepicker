@@ -21,15 +21,22 @@ function withSingleSelect<T extends IRootProps>(PassedComponent: ComponentType<T
     };
 
     getOnClickForDay = (day: IDay, prevOnClick: (() => void) | undefined) => {
-      const { changeSelectedDay } = this.context.singleSelect;
+      const {
+        singleSelect: { changeSelectedDay },
+        params: { isOpenCalendar, changeIsOpenCalendar },
+      } = this.context;
 
       if (prevOnClick) {
         return () => {
           prevOnClick();
           changeSelectedDay(day);
+          changeIsOpenCalendar(!isOpenCalendar);
         };
       } else {
-        return () => changeSelectedDay(day);
+        return () => {
+          changeSelectedDay(day);
+          changeIsOpenCalendar(!isOpenCalendar);
+        };
       }
     };
 

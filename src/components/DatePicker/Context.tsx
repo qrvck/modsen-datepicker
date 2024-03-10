@@ -26,10 +26,12 @@ export interface IContextData {
   };
 
   params: {
+    isOpenCalendar: boolean;
     mode: 'days' | 'months' | 'years';
     displayedMonthData: IFullMonth;
     displayedMonthIndex: number;
     displayedYear: number;
+    changeIsOpenCalendar: (open: boolean) => void;
     changeMode: (mode: 'days' | 'months' | 'years') => void;
     changeDisplayedMonthIndex: (monthIndex: number) => void;
     changeDisplayedYear: (year: number) => void;
@@ -57,10 +59,12 @@ const ContextData = createContext<IContextData>({
   },
 
   params: {
+    isOpenCalendar: false,
     mode: 'days',
     displayedMonthIndex: new Date().getMonth(),
     displayedYear: new Date().getFullYear(),
     displayedMonthData: createFullMonth(new Date()),
+    changeIsOpenCalendar: () => {},
     changeMode: () => {},
     changeDisplayedMonthIndex: () => {},
     changeDisplayedYear: () => {},
@@ -88,6 +92,7 @@ function Context({
   minDate,
   weekends,
 }: IContextProps) {
+  const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days');
   const [displayedMonthIndex, setDisplayedMonthIndex] = useState<number>(new Date().getMonth());
   const [displayedYear, setDisplayedYear] = useState<number>(new Date().getFullYear());
@@ -116,10 +121,12 @@ function Context({
     },
 
     params: {
+      isOpenCalendar,
       mode,
       displayedMonthData,
       displayedMonthIndex,
       displayedYear,
+      changeIsOpenCalendar: (open: boolean) => setIsOpenCalendar(open),
       changeMode: (mode: 'days' | 'months' | 'years') => setMode(mode),
       changeDisplayedMonthData: (date: Date) =>
         setDisplayedMonthData(createFullMonth(new Date(date), firstDayOfWeek)),
