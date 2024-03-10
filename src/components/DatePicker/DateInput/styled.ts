@@ -32,6 +32,10 @@ const CalendarButton = styled.button`
 const ClearButton = styled(CalendarButton)`
   left: auto;
   right: 0.6em;
+
+  &:disabled {
+    cursor: default;
+  }
 `;
 
 const Svg = styled.svg`
@@ -43,6 +47,10 @@ const Svg = styled.svg`
   ${CalendarButton}:hover &,
   ${ClearButton}:hover & {
     color: #2f80ed;
+  }
+
+  ${ClearButton}:disabled & {
+    color: #aaaaaa;
   }
 `;
 

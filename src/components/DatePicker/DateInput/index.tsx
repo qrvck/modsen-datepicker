@@ -29,8 +29,15 @@ class DateInput extends Component {
     this.setState({ isOpenCalendar: !isOpenCalendar });
   };
 
+  handleClickOnClearButton = () => {
+    const { changeSelectedDay } = this.context.singleSelect;
+    // this.setState({ isOpenCalendar:  });
+    changeSelectedDay(null);
+  };
+
   render() {
-    const { getValue, handleClickOnCalendarButton } = this;
+    const { getValue, handleClickOnCalendarButton, handleClickOnClearButton } = this;
+    const { selectedDay } = this.context.singleSelect;
     const { isOpenCalendar } = this.state;
     console.log(getValue());
 
@@ -44,7 +51,7 @@ class DateInput extends Component {
 
         <Input value={getValue()} />
 
-        <ClearButton>
+        <ClearButton disabled={!selectedDay} onClick={handleClickOnClearButton}>
           <Svg>
             <use href={sprite + '#clear'} />
           </Svg>
