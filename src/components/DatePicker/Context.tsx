@@ -100,7 +100,8 @@ function Context({
     createFullMonth(new Date(), firstDayOfWeek)
   );
 
-  const [selectedDay, setSelectedDay] = useState<IDay | null>(null);
+  const [selectedDayOfSingleSelect, setSelectedDayOfSingleSelect] = useState<IDay | null>(null);
+
   const [selectedDayOfTodoList, setSelectedDayOfTodoList] = useState<IDay | null>(null);
 
   useLayoutEffect(() => {
@@ -135,8 +136,8 @@ function Context({
     },
 
     singleSelect: {
-      selectedDay,
-      changeSelectedDay: (day: IDay | null) => setSelectedDay(day),
+      selectedDay: selectedDayOfSingleSelect,
+      changeSelectedDay: (day: IDay | null) => setSelectedDayOfSingleSelect(day),
     },
 
     todoList: {
