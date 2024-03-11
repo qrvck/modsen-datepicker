@@ -1,4 +1,4 @@
-import React, { Component, KeyboardEvent } from 'react';
+import React, { ChangeEvent, Component } from 'react';
 
 import sprite from '../../../assets/sprite.svg';
 import { Calendar } from '../Calendar';
@@ -7,7 +7,7 @@ import { CalendarButton, ClearButton, Input, InputWrapper, Svg } from './styled'
 
 export interface IRootProps {
   inputValue: string;
-  onKeyDownInput: (e: KeyboardEvent) => void;
+  onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void;
   onClickClearButton: () => void;
 }
 
@@ -21,7 +21,7 @@ class Root extends Component<IRootProps> {
   };
 
   render() {
-    const { inputValue, onKeyDownInput, onClickClearButton } = this.props;
+    const { inputValue, onChangeInput, onClickClearButton } = this.props;
     const { handleClickOnCalendarButton } = this;
     const {
       params: { isOpenCalendar },
@@ -35,7 +35,7 @@ class Root extends Component<IRootProps> {
           </Svg>
         </CalendarButton>
 
-        <Input value={inputValue} onKeyDown={onKeyDownInput} />
+        <Input value={inputValue} onChange={onChangeInput} />
 
         <ClearButton disabled={!inputValue} onClick={onClickClearButton}>
           <Svg>

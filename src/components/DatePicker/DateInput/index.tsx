@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { ContextData } from '../Context';
-import { withSingleSelect } from './hoc/withSingleSelect';
+import { withSingleSelect } from './hoc';
 import { Root } from './Root';
 
 type IComponentHOC = typeof Root | ReturnType<typeof withSingleSelect>;
@@ -13,14 +13,19 @@ class DateInput extends Component {
   Component = this.configureComponent();
 
   configureComponent() {
+    const { range } = this.context.config;
     let ComponentHOC: IComponentHOC = Root;
+
     ComponentHOC = withSingleSelect(ComponentHOC);
+    if (!range) {
+    } else {
+      // ComponentHOC = withRangeSelect(ComponentHOC);
+    }
 
     return ComponentHOC;
   }
 
   render() {
-    // const { range } = this.context.config;
     const { Component } = this;
 
     return <Component />;

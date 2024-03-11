@@ -1,4 +1,4 @@
-import React, { Component, ComponentType, KeyboardEvent } from 'react';
+import React, { ChangeEvent, Component, ComponentType } from 'react';
 
 import { createDay } from '../../../../utils/createDay';
 import { ContextData } from '../../Context';
@@ -24,27 +24,25 @@ function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
       }
     }
 
-    handleOnKeyDownInput = (e: KeyboardEvent) => {
-      const { inputValue } = this.state;
+    handleOnChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
       const { changeSelectedDay } = this.context.singleSelect;
       const { changeIsOpenCalendar } = this.context.params;
-      const { key } = e;
-      const numbers = '1234567890';
+      const { value } = e.target;
+      const { inputValue } = this.state;
       let mask = 'xx/xx/xxxx';
       const maskLength = 10;
-      let value = inputValue.replace(/\//g, '');
+      const newValue = value.replace(/\D/g, '');
 
-      if (numbers.includes(key) && inputValue.length <= maskLength) {
-        value = value + key;
-      } else if (key === 'Backspace') {
-        value = value.slice(0, value.length - 1);
+      if (value.length > inputValue.length) {
+        newValue.split('').forEach((number) => (mask = mask.replace('x', number)));
+        const indexOfLastMaskItem = mask.indexOf('x');
+        mask = indexOfLastMaskItem !== -1 ? mask.slice(0, indexOfLastMaskItem) : mask;
+
+        this.setState({ inputValue: mask });
+      } else {
+        mask = '';
+        this.setState({ inputValue: value });
       }
-
-      value.split('').forEach((number) => (mask = mask.replace('x', number)));
-      const indexOfLastMaskItem = mask.indexOf('x');
-      mask = indexOfLastMaskItem !== -1 ? mask.slice(0, indexOfLastMaskItem) : mask;
-
-      this.setState({ inputValue: mask });
 
       if (mask.length === maskLength) {
         const [inputDayNumber, inputMonthNumber, inputYear] = mask.split('/').map((i) => Number(i));
@@ -67,12 +65,12 @@ function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
     };
 
     getProps = () => {
-      const { handleOnKeyDownInput, handleClickOnClearButton } = this;
+      const { handleOnChangeInput, handleClickOnClearButton } = this;
       const { inputValue } = this.state;
 
       return {
         inputValue,
-        onKeyDownInput: handleOnKeyDownInput,
+        onChangeInput: handleOnChangeInput,
         onClickClearButton: handleClickOnClearButton,
       };
     };
