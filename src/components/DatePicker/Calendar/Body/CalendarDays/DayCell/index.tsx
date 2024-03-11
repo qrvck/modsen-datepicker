@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 
 import { IDay } from '../../../../../../utils/createDay';
 import { ContextData } from '../../../../Context';
-import { withCurrentDate } from './hoc/withCurrentDate';
-import { withHolidays } from './hoc/withHolidays';
-import { withMinMaxDate } from './hoc/withMinMaxDate';
-import { withSingleSelect } from './hoc/withSingleSelect';
-import { withTodoList } from './hoc/withTodoList';
-import { withWeekends } from './hoc/withWeekends';
+import {
+  withCurrentDate,
+  withHolidays,
+  withMinMaxDate,
+  withRangeSelect,
+  withSingleSelect,
+  withTodoList,
+  withWeekends,
+} from './hoc';
 import { Root } from './Root';
 
 interface IDayCellProps {
@@ -40,6 +43,8 @@ class DayCell extends Component<IDayCellProps> {
 
     if (!range) {
       ComponentHOC = withSingleSelect(ComponentHOC);
+    } else {
+      ComponentHOC = withRangeSelect(ComponentHOC);
     }
 
     return <ComponentHOC day={day} />;

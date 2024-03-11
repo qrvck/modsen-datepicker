@@ -44,10 +44,12 @@ export interface IContextData {
   };
 
   rangleSelect: {
-    firstSelectedDay: IDay | null;
-    secondSelectedDay: IDay | null;
-    changeFirstSelectedDay: (day: IDay | null) => void;
-    changeSecondSelectedDay: (day: IDay | null) => void;
+    mouseOverEndDay: IDay | null;
+    startDay: IDay | null;
+    endDay: IDay | null;
+    changeMouseOverEndDay: (day: IDay | null) => void;
+    changeStartDay: (day: IDay | null) => void;
+    changeEndDay: (day: IDay | null) => void;
   };
 
   todoList: {
@@ -84,10 +86,12 @@ const ContextData = createContext<IContextData>({
   },
 
   rangleSelect: {
-    firstSelectedDay: null,
-    secondSelectedDay: null,
-    changeFirstSelectedDay() {},
-    changeSecondSelectedDay() {},
+    mouseOverEndDay: null,
+    startDay: null,
+    endDay: null,
+    changeMouseOverEndDay() {},
+    changeStartDay() {},
+    changeEndDay() {},
   },
 
   todoList: {
@@ -116,10 +120,9 @@ function Context({
 
   const [selectedDayOfSingleSelect, setSelectedDayOfSingleSelect] = useState<IDay | null>(null);
 
-  const [firstSelectedDayOfRangeSelect, setFirstSelectedDayOfRangeSelect] = useState<IDay | null>(
-    null
-  );
-  const [secondSelectedDayOfRangeSelect, setSecondSelectedDayOfRangeSelect] = useState<IDay | null>(
+  const [startDayOfRangeSelect, setStartDayOfRangeSelect] = useState<IDay | null>(null);
+  const [endDayOfRangeSelect, setEndDayOfRangeSelect] = useState<IDay | null>(null);
+  const [mouseOverEndDayOfRangeSelect, setMouseOverEndDayOfRangeSelect] = useState<IDay | null>(
     null
   );
 
@@ -162,10 +165,12 @@ function Context({
     },
 
     rangleSelect: {
-      firstSelectedDay: firstSelectedDayOfRangeSelect,
-      secondSelectedDay: secondSelectedDayOfRangeSelect,
-      changeFirstSelectedDay: (day: IDay | null) => setFirstSelectedDayOfRangeSelect(day),
-      changeSecondSelectedDay: (day: IDay | null) => setSecondSelectedDayOfRangeSelect(day),
+      mouseOverEndDay: mouseOverEndDayOfRangeSelect,
+      startDay: startDayOfRangeSelect,
+      endDay: endDayOfRangeSelect,
+      changeMouseOverEndDay: (day: IDay | null) => setMouseOverEndDayOfRangeSelect(day),
+      changeStartDay: (day: IDay | null) => setStartDayOfRangeSelect(day),
+      changeEndDay: (day: IDay | null) => setEndDayOfRangeSelect(day),
     },
 
     todoList: {

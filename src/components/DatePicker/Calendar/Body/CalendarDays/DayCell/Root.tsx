@@ -9,7 +9,8 @@ export interface IRootProps {
   title?: string;
   disabled?: boolean;
   onClick?: () => void;
-  onHover?: () => void;
+  onMouseOver?: () => void;
+  onMouseOut?: () => void;
   onContextMenu?: () => void;
 }
 

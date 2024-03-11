@@ -71,6 +71,49 @@ const Cell = styled.button`
       color: #ffffff;
     }
   }
+
+  /* range */
+
+  &.between {
+    background: rgba(47, 128, 237, 0.1);
+    border-radius: 0;
+    color: #2f80ed;
+  }
+
+  &.start-selected {
+    background: #2f80ed;
+    color: #ffffff;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 8px;
+
+    &:hover {
+      color: #ffffff;
+      background: #2f80ed;
+    }
+  }
+
+  &.end-selected,
+  &.end-hover {
+    background: #2f80ed;
+    color: #ffffff;
+    border-top-left-radius: 0;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 0;
+  }
+
+  &.end-selected {
+    &:hover {
+      color: #ffffff;
+      background: #2f80ed;
+    }
+  }
+
+  &.end-hover {
+    cursor: pointer;
+  }
 `;
 
 export { Cell };
