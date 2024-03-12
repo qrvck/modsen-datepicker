@@ -3,7 +3,7 @@ import React, { ChangeEvent, Component } from 'react';
 import sprite from '../../../assets/sprite.svg';
 import { Calendar } from '../Calendar';
 import { ContextData } from '../Context';
-import { CalendarButton, ClearButton, Input, InputWrapper, Svg } from './styled';
+import { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper } from './styled';
 
 export interface IRootProps {
   inputValue: string;
@@ -25,26 +25,31 @@ class Root extends Component<IRootProps> {
     const { handleClickOnCalendarButton } = this;
     const {
       params: { isOpenCalendar },
+      config: { range },
     } = this.context;
 
     return (
-      <InputWrapper>
-        <CalendarButton onClick={handleClickOnCalendarButton}>
-          <Svg>
-            <use href={sprite + '#calendar'} />
-          </Svg>
-        </CalendarButton>
+      <Wrapper>
+        <InputWrapper>
+          <CalendarButton onClick={handleClickOnCalendarButton}>
+            <Svg>
+              <use href={sprite + '#calendar'} />
+            </Svg>
+          </CalendarButton>
 
-        <Input value={inputValue} onChange={onChangeInput} />
+          <Input value={inputValue} onChange={onChangeInput} />
 
-        <ClearButton disabled={!inputValue} onClick={onClickClearButton}>
-          <Svg>
-            <use href={sprite + '#clear'} />
-          </Svg>
-        </ClearButton>
+          <ClearButton disabled={!inputValue} onClick={onClickClearButton}>
+            <Svg>
+              <use href={sprite + '#clear'} />
+            </Svg>
+          </ClearButton>
 
-        <Calendar isOpen={isOpenCalendar} />
-      </InputWrapper>
+          <Calendar isOpen={isOpenCalendar} />
+        </InputWrapper>
+
+        <Hint>{range ? 'DD/MM/YYYY-DD/MM/YYYY' : 'DD/MM/YYYY'}</Hint>
+      </Wrapper>
     );
   }
 }

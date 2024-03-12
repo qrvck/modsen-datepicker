@@ -1,5 +1,10 @@
 import { styled } from 'styled-components';
 
+const Wrapper = styled.div`
+  width: 18.2em;
+  margin: auto;
+`;
+
 const InputWrapper = styled.div`
   position: relative;
 
@@ -54,4 +59,10 @@ const Svg = styled.svg`
   }
 `;
 
-export { CalendarButton, ClearButton, Input, InputWrapper, Svg };
+const Hint = styled.p`
+  margin: 0.1em 0 0 3.5em;
+  font-size: 0.7em;
+  color: #aaaaaa;
+`;
+
+export { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper };
