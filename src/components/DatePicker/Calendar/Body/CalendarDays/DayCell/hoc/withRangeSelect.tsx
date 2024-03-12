@@ -89,6 +89,8 @@ function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>
           changeEndDay,
           changeMouseOverEndDay,
         },
+
+        params: { changeIsOpenCalendar },
       } = this.context;
 
       if (startDay && !endDay) {
@@ -98,11 +100,13 @@ function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>
               prevOnClick();
               changeEndDay(day);
               changeMouseOverEndDay(null);
+              changeIsOpenCalendar(false);
             };
           } else {
             return () => {
               changeEndDay(day);
               changeMouseOverEndDay(null);
+              changeIsOpenCalendar(false);
             };
           }
         } else if (mouseOverEndDay && startDay.timestamp > mouseOverEndDay.timestamp) {
