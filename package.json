@@ -2,7 +2,10 @@
   "name": "modsen-datepicker",
   "version": "1.0.0",
   "description": "datepicker for React app",
-  "author": "Vlad Kapitan <v.kapitan2010@gmail.com>",
+  "author": {
+    "name": "Vlad Kapitan",
+    "email": "v.kapitan2010@gmail.com"
+  },
   "license": "ISC",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -24,7 +27,8 @@
     "lint": "eslint --fix \"./src/**/*.{js,ts,jsx,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,ts,jsx,tsx,json}\"",
     "eslint": "eslint",
-    "postinstall": "husky"
+    "postinstall": "husky",
+    "chromatic": "npx chromatic --project-token=chpt_e33bf2f1ee89de0"
   },
   "peerDependencies": {
     "react": "^18.2.0",
@@ -48,6 +52,7 @@
     "@types/react-dom": "^18.2.21",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
     "@typescript-eslint/parser": "^7.0.2",
+    "chromatic": "^11.0.8",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
