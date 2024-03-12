@@ -14,7 +14,15 @@ function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
       selectedDay: null,
     };
 
+    componentDidMount() {
+      this.syncState();
+    }
+
     componentDidUpdate() {
+      this.syncState();
+    }
+
+    syncState() {
       const { selectedDay } = this.context.singleSelect;
 
       if (this.state.selectedDay !== selectedDay && selectedDay) {

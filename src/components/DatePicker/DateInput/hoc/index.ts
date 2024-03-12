@@ -1,2 +1,2 @@
-// export { withRangeSelect } from './withRangeSelect';
+export { withRangeSelect } from './withRangeSelect';
 export { withSingleSelect } from './withSingleSelect';
