@@ -1,14 +1,8 @@
 import React, { Component } from 'react';
 
+import sprite from '../../../../assets/sprite.svg';
 import { ContextData } from '../../Context';
-import {
-  MonthButton,
-  MontNameAndYearWrapper,
-  NextMonthButton,
-  PrevMonthButton,
-  Wrapper,
-  YearButton,
-} from './styled';
+import { Button, NextMonthButton, PrevMonthButton, Svg, Wrapper } from './styled';
 
 class Header extends Component {
   static contextType = ContextData;
@@ -74,22 +68,34 @@ class Header extends Component {
 
   render() {
     const {
-      params: { displayedMonthData },
+      params: { displayedMonthData, mode },
     } = this.context;
 
     const { onClickMonth, onClickYear, onClickNextMonth, onClickPrevMonth } = this;
     const { monthName, year } = displayedMonthData;
 
     return (
-      <Wrapper>
-        <PrevMonthButton onClick={onClickPrevMonth}>{'<'}</PrevMonthButton>
+      <Wrapper $center={mode !== 'days'}>
+        {mode === 'days' && (
+          <PrevMonthButton onClick={onClickPrevMonth}>
+            <Svg>
+              <use href={sprite + '#double-arrow'} />
+            </Svg>
+          </PrevMonthButton>
+        )}
 
-        <MontNameAndYearWrapper>
-          <MonthButton onClick={onClickMonth}>{monthName}</MonthButton>
-          <YearButton onClick={onClickYear}>{year}</YearButton>
-        </MontNameAndYearWrapper>
+        <div>
+          <Button onClick={onClickMonth}>{monthName}</Button>
+          <Button onClick={onClickYear}>{year}</Button>
+        </div>
 
-        <NextMonthButton onClick={onClickNextMonth}>{'>'}</NextMonthButton>
+        {mode === 'days' && (
+          <NextMonthButton onClick={onClickNextMonth}>
+            <Svg>
+              <use href={sprite + '#double-arrow'} />
+            </Svg>
+          </NextMonthButton>
+        )}
       </Wrapper>
     );
   }
