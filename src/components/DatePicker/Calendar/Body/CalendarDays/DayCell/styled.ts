@@ -12,10 +12,11 @@ const Cell = styled.button`
   font: inherit;
   border: none;
   background-color: transparent;
+  border-radius: 8px;
+  box-sizing: border-box;
 
   &.current {
-    background-color: orange;
-    border-radius: 8px;
+    border: 0.2em solid orange;
   }
 
   &.selectable {
@@ -23,7 +24,6 @@ const Cell = styled.button`
 
     &:hover {
       background: rgba(47, 128, 237, 0.1);
-      border-radius: 8px;
       color: #2f80ed;
     }
   }
@@ -64,7 +64,6 @@ const Cell = styled.button`
   &.selected {
     background: #2f80ed;
     color: #ffffff;
-    border-radius: 8px;
 
     &:hover {
       background: #2f80ed;

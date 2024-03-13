@@ -12,6 +12,8 @@ const MonthCell = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  border-radius: 8px;
 
   cursor: pointer;
 
@@ -20,7 +22,7 @@ const MonthCell = styled.div`
   }
 
   &.current {
-    background-color: orange;
+    border: 0.2em solid orange;
   }
 `;
 
