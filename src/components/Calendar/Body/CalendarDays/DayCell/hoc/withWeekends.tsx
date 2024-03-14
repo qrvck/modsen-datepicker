@@ -1,7 +1,7 @@
 import React, { Component, ComponentType } from 'react';
 
 import { ContextData } from '../../../../../../providers/DataProvider';
-import { IDay } from '../../../../../../utils/createDay';
+import { IDay } from '../../../../../../utils/create/createDay';
 import { IRootProps } from '../Root';
 
 function withWeekends<T extends IRootProps>(PassedComponent: ComponentType<T>) {

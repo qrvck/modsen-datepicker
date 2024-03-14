@@ -1,4 +1,4 @@
-import { createDay } from './createDay';
+import { createDay } from '../create/createDay';
 
 function getDayNames(firstDayOfWeek: 'sunday' | 'monday' = 'monday') {
   const dayCountInWeek = 7;

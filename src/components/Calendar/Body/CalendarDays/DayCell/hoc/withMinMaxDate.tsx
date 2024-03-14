@@ -1,8 +1,8 @@
 import React, { Component, ComponentType } from 'react';
 
 import { ContextData } from '../../../../../../providers/DataProvider';
-import { checkIsDayGreaterDate, checkIsDayLessDate } from '../../../../../../utils/checkDay';
-import { IDay } from '../../../../../../utils/createDay';
+import { checkIsDayGreaterDate, checkIsDayLessDate } from '../../../../../../utils/check/checkDay';
+import { IDay } from '../../../../../../utils/create/createDay';
 import { IRootProps } from '../Root';
 
 function withMinMaxDate<T extends IRootProps>(PassedComponent: ComponentType<T>) {

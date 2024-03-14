@@ -1,4 +1,4 @@
-import { MAX_YEAR, MIN_YEAR } from '../constants';
+import { MAX_YEAR, MIN_YEAR } from '../../constants';
 
 function getYears() {
   const years = [];

@@ -1,7 +1,7 @@
 import React, { ChangeEvent, Component, ComponentType } from 'react';
 
 import { ContextData } from '../../../providers/DataProvider';
-import { createDay } from '../../../utils/createDay';
+import { createDay } from '../../../utils/create/createDay';
 import { IRootProps } from '../Root';
 
 function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {

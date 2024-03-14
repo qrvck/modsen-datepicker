@@ -1,8 +1,8 @@
 import React, { Component, ComponentType, MouseEvent } from 'react';
 
 import { ContextData } from '../../../../../../providers/DataProvider';
-import { checkIsDayFromMonth } from '../../../../../../utils/checkDay';
-import { IDay } from '../../../../../../utils/createDay';
+import { checkIsDayFromMonth } from '../../../../../../utils/check/checkDay';
+import { IDay } from '../../../../../../utils/create/createDay';
 import { todoStorage } from '../../../../TodoList/todoStorage';
 import { IRootProps } from '../Root';
 

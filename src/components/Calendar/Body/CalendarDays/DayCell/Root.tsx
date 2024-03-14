@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { IDay } from '../../../../../utils/createDay';
+import { IDay } from '../../../../../utils/create/createDay';
 import { Cell } from './styled';
 
 export interface IRootProps {

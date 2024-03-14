@@ -1,4 +1,4 @@
-import { IDay } from './createDay';
+import { IDay } from '../create/createDay';
 
 function checkIsCurrentDay(day: IDay) {
   const today = new Date();

@@ -1,4 +1,4 @@
-import { createMonth } from './createMonth';
+import { createMonth } from '../create/createMonth';
 
 function getMonthNames() {
   const monthCount = 12;
