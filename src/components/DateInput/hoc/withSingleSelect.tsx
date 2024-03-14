@@ -3,7 +3,7 @@ import React, { ChangeEvent, Component, ComponentType } from 'react';
 import { ContextData } from '@/providers/DataProvider';
 import { createDay } from '@/utils/create/createDay';
 
-import { IRootProps } from '../Root';
+import { IRootProps } from '../types';
 
 function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
   return class WithSingleSelect extends Component {

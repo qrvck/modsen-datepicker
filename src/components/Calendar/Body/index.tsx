@@ -11,46 +11,21 @@ class Body extends Component {
   static contextType = ContextData;
   declare context: React.ContextType<typeof ContextData>;
 
-  onChangeMonth = (monthIndex: number) => {
-    const {
-      params: { displayedYear, changeMode, changeDisplayedMonthIndex, changeDisplayedMonthData },
-    } = this.context;
-
-    changeMode('days');
-    changeDisplayedMonthIndex(monthIndex);
-    changeDisplayedMonthData(new Date(displayedYear, monthIndex));
-  };
-
-  onChangeYear = (year: number) => {
-    const {
-      params: { displayedMonthIndex, changeMode, changeDisplayedYear, changeDisplayedMonthData },
-    } = this.context;
-
-    changeMode('days');
-    changeDisplayedYear(year);
-    changeDisplayedMonthData(new Date(year, displayedMonthIndex));
-  };
-
   render() {
     const {
-      config: { firstDayOfWeek },
-      params: { mode, displayedYear },
+      params: { mode },
     } = this.context;
-
-    const { onChangeMonth, onChangeYear } = this;
 
     return (
       <div>
         {mode === 'days' && (
           <>
-            <DayNames firstDayOfWeek={firstDayOfWeek}></DayNames>
+            <DayNames />
             <CalendarDays />
           </>
         )}
-        {mode === 'months' && (
-          <CalendarMonths displayedYear={displayedYear} onChangeMonth={onChangeMonth} />
-        )}
-        {mode === 'years' && <CalendarYears onChangeYear={onChangeYear} />}
+        {mode === 'months' && <CalendarMonths />}
+        {mode === 'years' && <CalendarYears />}
       </div>
     );
   }

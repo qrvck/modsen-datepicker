@@ -1,12 +1,8 @@
-import React, { Component, ReactNode } from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 
 import { Background, CloseButton, InnerBackground, Window } from './styled';
-
-interface IModalProps {
-  children: ReactNode;
-  onClose: () => void;
-}
+import { IModalProps } from './types';
 
 class Modal extends Component<IModalProps> {
   appRoot = document.querySelector('body');

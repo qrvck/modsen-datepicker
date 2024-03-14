@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 import { ContextData } from '@/providers/DataProvider';
-import { IDay } from '@/utils/create/createDay';
 
 import {
   withCurrentDate,
@@ -13,24 +12,7 @@ import {
   withWeekends,
 } from './hoc';
 import { Root } from './Root';
-
-interface IDayCellProps {
-  day: IDay;
-}
-
-interface IDayCellState {
-  minDate?: Date;
-  maxDate?: Date;
-  range: boolean;
-  weekends: boolean;
-  holidays: boolean;
-  todoList: boolean;
-}
-
-type IComponentHOC =
-  | typeof Root
-  | ReturnType<typeof withCurrentDate>
-  | ReturnType<typeof withMinMaxDate>;
+import { IDayCellProps, IDayCellState } from './types';
 
 class DayCell extends Component<IDayCellProps, IDayCellState> {
   static contextType = ContextData;
@@ -50,7 +32,7 @@ class DayCell extends Component<IDayCellProps, IDayCellState> {
   configureComponent() {
     const { minDate, maxDate, range, weekends, holidays, todoList } = this.context.config;
 
-    let ComponentHOC: IComponentHOC = Root;
+    let ComponentHOC = Root;
     ComponentHOC = withCurrentDate(ComponentHOC);
 
     if (minDate || maxDate) ComponentHOC = withMinMaxDate(ComponentHOC);

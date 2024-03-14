@@ -1,25 +1,35 @@
 import React, { Component, createRef } from 'react';
 
 import { MIN_YEAR } from '@/constants';
+import { ContextData } from '@/providers/DataProvider';
 import { getYears } from '@/utils/get/getYears';
 
 import { Wrapper, YearCell } from './styled';
 
-interface ICalendarYearsProps {
-  onChangeYear: (year: number) => void;
-}
+class CalendarYears extends Component {
+  static contextType = ContextData;
+  declare context: React.ContextType<typeof ContextData>;
 
-class CalendarYears extends Component<ICalendarYearsProps> {
   wrapperRef = createRef<HTMLDivElement>();
 
+  handleClickOnYear = (year: number) => {
+    const {
+      params: { displayedMonthIndex, changeMode, changeDisplayedYear, changeDisplayedMonthData },
+    } = this.context;
+
+    changeMode('days');
+    changeDisplayedYear(year);
+    changeDisplayedMonthData(new Date(year, displayedMonthIndex));
+  };
+
   createYearCells = () => {
-    const { onChangeYear } = this.props;
+    const { handleClickOnYear } = this;
     const currentYear = new Date().getFullYear();
 
     return getYears().map((year) => (
       <YearCell
         className={currentYear === year ? 'current' : ''}
-        onClick={() => onChangeYear(year)}
+        onClick={() => handleClickOnYear(year)}
         key={year}
       >
         {year}

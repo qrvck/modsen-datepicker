@@ -4,11 +4,7 @@ import { ContextData } from '@/providers/DataProvider';
 
 import { withRangeSelect, withSingleSelect } from './hoc';
 import { Root } from './Root';
-
-type IComponentHOC =
-  | typeof Root
-  | ReturnType<typeof withSingleSelect>
-  | ReturnType<typeof withRangeSelect>;
+import { IComponentHOC } from './types';
 
 class DateInput extends Component {
   static contextType = ContextData;

@@ -3,7 +3,6 @@ import React, { ChangeEvent, Component, createRef, KeyboardEvent } from 'react';
 import sprite from '@/assets/sprite.svg';
 import { Modal } from '@/components/common/Modal';
 import { ContextData } from '@/providers/DataProvider';
-import { IDay } from '@/utils/create/createDay';
 
 import {
   AddButton,
@@ -16,13 +15,8 @@ import {
   Svg,
   Title,
 } from './styled';
-import { ITodoItem, todoStorage } from './todoStorage';
-
-interface ITodoListState {
-  addInputValue: string;
-  selectedDay: IDay | null;
-  todoList: ITodoItem[] | null;
-}
+import { todoStorage } from './todoStorage';
+import { ITodoListState } from './types';
 
 class TodoList extends Component<object, ITodoListState> {
   static contextType = ContextData;

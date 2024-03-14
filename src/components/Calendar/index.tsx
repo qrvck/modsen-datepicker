@@ -6,10 +6,7 @@ import { Body } from './Body';
 import { Header } from './Header';
 import { Wrapper } from './styled';
 import { TodoList } from './TodoList';
-
-interface ICalendarProps {
-  isOpen: boolean;
-}
+import { ICalendarProps } from './types';
 
 class Calendar extends React.Component<ICalendarProps> {
   static contextType = ContextData;

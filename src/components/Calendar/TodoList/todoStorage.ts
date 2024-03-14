@@ -1,14 +1,6 @@
 import { IDay } from '@/utils/create/createDay';
 
-interface ITodoLists {
-  // вид ключа: 'dayNumber/monthIndex/year'
-  [index: string]: ITodoItem[] | undefined;
-}
-
-export interface ITodoItem {
-  desc: string;
-  uuid: string;
-}
+import { ITodoItem, ITodoLists } from './types';
 
 const getInitialTodoListsFromLocalStorage = () => {
   const todoLists = localStorage.getItem('modsen-Datepicker-todo-lists');

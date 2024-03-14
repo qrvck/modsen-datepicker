@@ -1,17 +1,30 @@
 import React, { Component } from 'react';
 
+import { ContextData } from '@/providers/DataProvider';
 import { getMonthNames } from '@/utils/get/getMonthNames';
 
 import { MonthCell, Wrapper } from './styled';
 
-interface ICalendarMonthsProps {
-  displayedYear: number;
-  onChangeMonth: (monthIndex: number) => void;
-}
+class CalendarMonths extends Component {
+  static contextType = ContextData;
+  declare context: React.ContextType<typeof ContextData>;
 
-class CalendarMonths extends Component<ICalendarMonthsProps> {
+  handleClickOnMonth = (monthIndex: number) => {
+    const {
+      params: { displayedYear, changeMode, changeDisplayedMonthIndex, changeDisplayedMonthData },
+    } = this.context;
+
+    changeMode('days');
+    changeDisplayedMonthIndex(monthIndex);
+    changeDisplayedMonthData(new Date(displayedYear, monthIndex));
+  };
+
   createMonthCells = () => {
-    const { displayedYear, onChangeMonth } = this.props;
+    const {
+      params: { displayedYear },
+    } = this.context;
+
+    const { handleClickOnMonth } = this;
     const now = new Date();
     const currentYear = now.getFullYear();
     const currentMonthIndex = now.getMonth();
@@ -21,7 +34,7 @@ class CalendarMonths extends Component<ICalendarMonthsProps> {
         className={
           currentYear === displayedYear && currentMonthIndex === monthIndex ? 'current' : ''
         }
-        onClick={() => onChangeMonth(monthIndex)}
+        onClick={() => handleClickOnMonth(monthIndex)}
         key={monthName}
       >
         {monthName}

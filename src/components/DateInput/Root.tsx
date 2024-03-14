@@ -1,16 +1,11 @@
-import React, { ChangeEvent, Component } from 'react';
+import React, { Component } from 'react';
 
 import sprite from '@/assets/sprite.svg';
 import { ContextData } from '@/providers/DataProvider';
 
 import { Calendar } from '../Calendar';
 import { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper } from './styled';
-
-export interface IRootProps {
-  inputValue: string;
-  onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void;
-  onClickClearButton: () => void;
-}
+import { IRootProps } from './types';
 
 class Root extends Component<IRootProps> {
   static contextType = ContextData;

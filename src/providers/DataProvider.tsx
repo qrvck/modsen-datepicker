@@ -1,62 +1,9 @@
-import React, { createContext, ReactNode, useLayoutEffect, useState } from 'react';
+import React, { createContext, useLayoutEffect, useState } from 'react';
+
+import { IContextData, IDataProviderProps } from '@/@types/dataProvider';
 
 import { IDay } from '../utils/create/createDay';
 import { createFullMonth, IFullMonth } from '../utils/create/createFullMonth';
-
-interface IContextProps {
-  children: ReactNode;
-  firstDayOfWeek: 'sunday' | 'monday';
-  range: boolean;
-  todoList: boolean;
-  maxDate?: Date;
-  minDate?: Date;
-  holidays: boolean;
-  weekends: boolean;
-}
-
-export interface IContextData {
-  config: {
-    firstDayOfWeek: 'sunday' | 'monday';
-    range: boolean;
-    todoList: boolean;
-    maxDate?: Date;
-    minDate?: Date;
-    holidays: boolean;
-    weekends: boolean;
-  };
-
-  params: {
-    isOpenCalendar: boolean;
-    mode: 'days' | 'months' | 'years';
-    displayedMonthData: IFullMonth;
-    displayedMonthIndex: number;
-    displayedYear: number;
-    changeIsOpenCalendar: (open: boolean) => void;
-    changeMode: (mode: 'days' | 'months' | 'years') => void;
-    changeDisplayedMonthIndex: (monthIndex: number) => void;
-    changeDisplayedYear: (year: number) => void;
-    changeDisplayedMonthData: (date: Date) => void;
-  };
-
-  singleSelect: {
-    selectedDay: IDay | null;
-    changeSelectedDay: (day: IDay | null) => void;
-  };
-
-  rangleSelect: {
-    mouseOverEndDay: IDay | null;
-    startDay: IDay | null;
-    endDay: IDay | null;
-    changeMouseOverEndDay: (day: IDay | null) => void;
-    changeStartDay: (day: IDay | null) => void;
-    changeEndDay: (day: IDay | null) => void;
-  };
-
-  todoList: {
-    selectedDay: IDay | null;
-    changeSelectedDay: (day: IDay | null) => void;
-  };
-}
 
 const ContextData = createContext<IContextData>({
   config: {
@@ -109,7 +56,7 @@ function Context({
   maxDate,
   minDate,
   weekends,
-}: IContextProps) {
+}: IDataProviderProps) {
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days');
   const [displayedMonthIndex, setDisplayedMonthIndex] = useState<number>(new Date().getMonth());
