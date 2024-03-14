@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { getDayNames } from '../../../../utils/get/getDayNames';
+import { getDayNames } from '@/utils/get/getDayNames';
+
 import { Cell, Wrapper } from './styled';
 
 interface IDayNamesProps {

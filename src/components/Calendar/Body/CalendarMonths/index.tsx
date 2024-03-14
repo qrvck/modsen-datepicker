@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { getMonthNames } from '../../../../utils/get/getMonthNames';
+import { getMonthNames } from '@/utils/get/getMonthNames';
+
 import { MonthCell, Wrapper } from './styled';
 
 interface ICalendarMonthsProps {

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { ContextData } from '../../../providers/DataProvider';
+import { ContextData } from '@/providers/DataProvider';
+
 import { CalendarDays } from './CalendarDays';
 import { CalendarMonths } from './CalendarMonths';
 import { CalendarYears } from './CalendarYears';

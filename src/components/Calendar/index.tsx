@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { ContextData } from '../../providers/DataProvider';
+import { ContextData } from '@/providers/DataProvider';
+
 import { Body } from './Body';
 import { Header } from './Header';
 import { Wrapper } from './styled';

@@ -1,9 +1,10 @@
 import React, { Component, ComponentType, MouseEvent } from 'react';
 
-import { ContextData } from '../../../../../../providers/DataProvider';
-import { checkIsDayFromMonth } from '../../../../../../utils/check/checkDay';
-import { IDay } from '../../../../../../utils/create/createDay';
-import { todoStorage } from '../../../../TodoList/todoStorage';
+import { todoStorage } from '@/components/Calendar/TodoList/todoStorage';
+import { ContextData } from '@/providers/DataProvider';
+import { checkIsDayFromMonth } from '@/utils/check/checkDay';
+import { IDay } from '@/utils/create/createDay';
+
 import { IRootProps } from '../Root';
 
 function withTodoList<T extends IRootProps>(PassedComponent: ComponentType<T>) {

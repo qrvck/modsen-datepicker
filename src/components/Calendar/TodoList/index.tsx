@@ -1,9 +1,10 @@
 import React, { ChangeEvent, Component, createRef, KeyboardEvent } from 'react';
 
-import sprite from '../../../assets/sprite.svg';
-import { ContextData } from '../../../providers/DataProvider';
-import { IDay } from '../../../utils/create/createDay';
-import { Modal } from '../../common/Modal';
+import sprite from '@/assets/sprite.svg';
+import { Modal } from '@/components/common/Modal';
+import { ContextData } from '@/providers/DataProvider';
+import { IDay } from '@/utils/create/createDay';
+
 import {
   AddButton,
   AddInput,

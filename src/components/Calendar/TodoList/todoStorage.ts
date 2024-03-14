@@ -1,4 +1,4 @@
-import { IDay } from '../../../utils/create/createDay';
+import { IDay } from '@/utils/create/createDay';
 
 interface ITodoLists {
   // вид ключа: 'dayNumber/monthIndex/year'

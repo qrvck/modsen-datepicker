@@ -1,8 +1,9 @@
 import React, { Component, ComponentType } from 'react';
 
-import { ContextData } from '../../../../../../providers/DataProvider';
-import { checkAreDaysEqual } from '../../../../../../utils/check/checkDay';
-import { IDay } from '../../../../../../utils/create/createDay';
+import { ContextData } from '@/providers/DataProvider';
+import { checkAreDaysEqual } from '@/utils/check/checkDay';
+import { IDay } from '@/utils/create/createDay';
+
 import { IRootProps } from '../Root';
 
 function withSingleSelect<T extends IRootProps>(PassedComponent: ComponentType<T>) {

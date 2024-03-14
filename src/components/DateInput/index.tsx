@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
-import { ContextData } from '../../providers/DataProvider';
+import { ContextData } from '@/providers/DataProvider';
+
 import { withRangeSelect, withSingleSelect } from './hoc';
 import { Root } from './Root';
 

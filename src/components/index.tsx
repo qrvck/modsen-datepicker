@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Context } from '../providers/DataProvider';
+import { Context } from '@/providers/DataProvider';
+
 import { DateInput } from './DateInput';
 
 interface IDatePickerProps {
