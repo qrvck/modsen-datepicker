@@ -32,7 +32,7 @@ const Window = styled.div`
   padding: 1em;
 
   background-color: white;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   border: 1px solid #e1e1e1;
 `;
 
@@ -46,13 +46,13 @@ const CloseButton = styled.button`
   padding: 0;
 
   border: none;
-  border-radius: 8px;
-  background-color: #2f80ed;
-  color: #ffffff;
+  border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
+  background-color: ${({ theme }) => theme.colors.royalBlue};
+  color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 
   &:hover {
-    color: #2f80ed;
+    color: ${({ theme }) => theme.colors.royalBlue};
     background: rgba(47, 128, 237, 0.1);
   }
 `;

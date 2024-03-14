@@ -19,8 +19,8 @@ const AddInput = styled.input`
   width: 100%;
   padding: 0.5em 2.1em 0.5em 1em;
 
-  border: 1px solid #dddddd;
-  border-radius: 8px;
+  border: 1px solid ${({ theme }) => theme.colors.gainborough};
+  border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   font: inherit;
 `;
 
@@ -52,7 +52,7 @@ const Item = styled.li`
   overflow: hidden;
 
   &:nth-child(2n - 1) {
-    background-color: #dddddd;
+    background-color: ${({ theme }) => theme.colors.gainborough};
   }
 `;
 
@@ -66,7 +66,7 @@ const RemoveButton = styled.button`
   visibility: hidden;
   border: none;
   border-radius: 50%;
-  background-color: #ffffff;
+  background-color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 
   ${Item}:hover & {
@@ -82,12 +82,12 @@ const HintMessage = styled.p`
 const Svg = styled.svg`
   width: 1.7em;
   height: 1.7em;
-  color: #000000;
+  color: ${({ theme }) => theme.colors.black};
   vertical-align: bottom;
 
   ${AddButton}:hover &,
   ${RemoveButton}:hover & {
-    color: #2f80ed;
+    color: ${({ theme }) => theme.colors.royalBlue};
   }
 `;
 

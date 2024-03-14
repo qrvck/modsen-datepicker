@@ -12,7 +12,7 @@ const Cell = styled.button`
   font: inherit;
   border: none;
   background-color: transparent;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   box-sizing: border-box;
 
   &.current {
@@ -24,13 +24,13 @@ const Cell = styled.button`
 
     &:hover {
       background: rgba(47, 128, 237, 0.1);
-      color: #2f80ed;
+      color: ${({ theme }) => theme.colors.royalBlue};
     }
   }
 
   &.weekend,
   &.holiday {
-    color: red;
+    color: ${({ theme }) => theme.colors.red};
   }
 
   &.hasTodo {
@@ -52,22 +52,22 @@ const Cell = styled.button`
   }
 
   &[disabled] {
-    color: #aaaaaa;
+    color: ${({ theme }) => theme.colors.whiteAluminum};
     cursor: default;
 
     &:hover {
       background: transparent;
-      color: #aaaaaa;
+      color: ${({ theme }) => theme.colors.whiteAluminum};
     }
   }
 
   &.selected {
-    background: #2f80ed;
-    color: #ffffff;
+    background: ${({ theme }) => theme.colors.royalBlue};
+    color: ${({ theme }) => theme.colors.white};
 
     &:hover {
-      background: #2f80ed;
-      color: #ffffff;
+      background: ${({ theme }) => theme.colors.royalBlue};
+      color: ${({ theme }) => theme.colors.white};
     }
   }
 
@@ -76,27 +76,27 @@ const Cell = styled.button`
   &.between {
     background: rgba(47, 128, 237, 0.1);
     border-radius: 0;
-    color: #2f80ed;
+    color: ${({ theme }) => theme.colors.royalBlue};
   }
 
   &.start-selected {
-    background: #2f80ed;
-    color: #ffffff;
+    background: ${({ theme }) => theme.colors.royalBlue};
+    color: ${({ theme }) => theme.colors.white};
     border-top-left-radius: 8px;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 8px;
 
     &:hover {
-      color: #ffffff;
-      background: #2f80ed;
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.royalBlue};
     }
   }
 
   &.end-selected,
   &.end-hover {
-    background: #2f80ed;
-    color: #ffffff;
+    background: ${({ theme }) => theme.colors.royalBlue};
+    color: ${({ theme }) => theme.colors.white};
     border-top-left-radius: 0;
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
@@ -105,8 +105,8 @@ const Cell = styled.button`
 
   &.end-selected {
     &:hover {
-      color: #ffffff;
-      background: #2f80ed;
+      color: ${({ theme }) => theme.colors.white};
+      background: ${({ theme }) => theme.colors.royalBlue};
     }
   }
 

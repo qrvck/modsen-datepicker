@@ -2,7 +2,9 @@ import React from 'react';
 
 import { IDatePickerProps } from '@/@types/datePicker';
 import { DateInput } from '@/components/DateInput';
-import { Context } from '@/providers/DataProvider';
+import { DataContext } from '@/providers/DataProvider';
+
+import { ThemeProvider } from './providers/ThemeProvider';
 
 function DatePicker({
   firstDayOfWeek = 'monday',
@@ -14,7 +16,7 @@ function DatePicker({
   minDate,
 }: IDatePickerProps) {
   return (
-    <Context
+    <DataContext
       firstDayOfWeek={firstDayOfWeek}
       range={range}
       todoList={todoList}
@@ -23,8 +25,10 @@ function DatePicker({
       holidays={holidays}
       weekends={weekends}
     >
-      <DateInput />
-    </Context>
+      <ThemeProvider>
+        <DateInput />
+      </ThemeProvider>
+    </DataContext>
   );
 }
 

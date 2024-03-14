@@ -18,7 +18,7 @@ const Button = styled.button`
 
   &:hover {
     background: rgba(47, 128, 237, 0.1);
-    border-radius: 8px;
+    border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   }
 `;
 
@@ -33,7 +33,7 @@ const NextMonthButton = styled(PrevMonthButton)`
 const Svg = styled.svg`
   width: 1.4em;
   height: 1.4em;
-  color: #000000;
+  color: ${({ theme }) => theme.colors.black};
   vertical-align: bottom;
 
   ${NextMonthButton} & {

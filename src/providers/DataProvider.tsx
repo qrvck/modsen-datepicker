@@ -47,7 +47,7 @@ const ContextData = createContext<IContextData>({
   },
 });
 
-function Context({
+function DataContext({
   children,
   firstDayOfWeek,
   range,
@@ -129,4 +129,4 @@ function Context({
   return <ContextData.Provider value={providerParams}>{children}</ContextData.Provider>;
 }
 
-export { Context, ContextData };
+export { ContextData, DataContext };

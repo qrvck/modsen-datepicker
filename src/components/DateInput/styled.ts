@@ -17,8 +17,8 @@ const Input = styled.input.attrs({ placeholder: 'Choose Date' })`
   padding: 0.7em 2.4em;
 
   font: inherit;
-  border-radius: 8px;
-  border: 1px solid #dddddd;
+  border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
+  border: 1px solid ${({ theme }) => theme.colors.gainborough};
 `;
 
 const CalendarButton = styled.button`
@@ -46,23 +46,23 @@ const ClearButton = styled(CalendarButton)`
 const Svg = styled.svg`
   width: 1.2em;
   height: 1.2em;
-  color: #000000;
+  color: ${({ theme }) => theme.colors.black};
   vertical-align: bottom;
 
   ${CalendarButton}:hover &,
   ${ClearButton}:hover & {
-    color: #2f80ed;
+    color: ${({ theme }) => theme.colors.royalBlue};
   }
 
   ${ClearButton}:disabled & {
-    color: #aaaaaa;
+    color: ${({ theme }) => theme.colors.whiteAluminum};
   }
 `;
 
 const Hint = styled.p`
   margin: 0.1em 0 0 3.5em;
   font-size: 0.7em;
-  color: #aaaaaa;
+  color: ${({ theme }) => theme.colors.whiteAluminum};
 `;
 
 export { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper };

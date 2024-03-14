@@ -19,7 +19,7 @@ const YearCell = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
 
   cursor: pointer;
 
