@@ -14,7 +14,11 @@
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": false,
-    "rootDir": "src"
+    "rootDir": "src",
+    "baseUrl": "src",
+    "paths": { 
+      "@/*": ["*"]
+    }
   },
 
   "include": ["src"],

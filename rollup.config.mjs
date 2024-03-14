@@ -3,6 +3,7 @@ import image from '@rollup/plugin-image';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+import alias from 'rollup-plugin-alias';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { visualizer } from 'rollup-plugin-visualizer';
 
@@ -20,6 +21,9 @@ export default {
   },
 
   plugins: [
+    alias({
+      entries: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+    }),
     image(),
     peerDepsExternal(),
     resolve(),
