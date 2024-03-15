@@ -47,15 +47,15 @@ const ContextData = createContext<IContextData>({
   },
 });
 
-function DataContext({
+function DataProvider({
   children,
-  firstDayOfWeek,
-  range,
-  todoList,
-  holidays,
+  firstDayOfWeek = 'monday',
   maxDate,
   minDate,
-  weekends,
+  range = false,
+  todoList = false,
+  holidays = false,
+  weekends = false,
 }: IDataProviderProps) {
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days');
@@ -129,4 +129,4 @@ function DataContext({
   return <ContextData.Provider value={providerParams}>{children}</ContextData.Provider>;
 }
 
-export { ContextData, DataContext };
+export { ContextData, DataProvider };

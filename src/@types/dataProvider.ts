@@ -3,15 +3,10 @@ import { ReactNode } from 'react';
 import { IDay } from '@/utils/create/createDay';
 import { IFullMonth } from '@/utils/create/createFullMonth';
 
-interface IDataProviderProps {
+import { IDatePickerProps } from './datePicker';
+
+interface IDataProviderProps extends IDatePickerProps {
   children: ReactNode;
-  firstDayOfWeek: 'sunday' | 'monday';
-  range: boolean;
-  todoList: boolean;
-  maxDate?: Date;
-  minDate?: Date;
-  holidays: boolean;
-  weekends: boolean;
 }
 
 interface IContextData {
