@@ -17,7 +17,7 @@ function withSingleSelect<T extends IRootProps>(PassedComponent: ComponentType<T
       if (selectedDay && checkAreDaysEqual(day, selectedDay)) {
         return prevClassName ? `${prevClassName} selected` : 'selected';
       } else {
-        return prevClassName ? `${prevClassName} selectable` : 'selectable';
+        return prevClassName;
       }
     };
 
@@ -45,8 +45,8 @@ function withSingleSelect<T extends IRootProps>(PassedComponent: ComponentType<T
       const { day, className, disabled, onClick } = this.props;
       const { getOnClickForDay, getClassNameForDay } = this;
 
+      const newClassName = !disabled ? getClassNameForDay(className, day) : className;
       const newOnClick = !disabled ? getOnClickForDay(day, onClick) : onClick;
-      const newClassName = getClassNameForDay(className, day);
 
       return { className: newClassName, onClick: newOnClick };
     };

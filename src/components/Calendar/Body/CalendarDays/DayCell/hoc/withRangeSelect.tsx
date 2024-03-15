@@ -1,7 +1,7 @@
 import React, { Component, ComponentType } from 'react';
 
 import { ContextData } from '@/providers/DataProvider';
-import { checkAreDaysEqual, checkIsDayFromMonth } from '@/utils/check/checkDay';
+import { checkAreDaysEqual } from '@/utils/check/checkDay';
 import { IDay } from '@/utils/create/createDay';
 
 import { IRootProps } from '../Root';
@@ -16,7 +16,6 @@ function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>
       const className = [];
 
       if (prevClassName) className.push(prevClassName);
-      if ((startDay && endDay) || (!startDay && !endDay)) className.push('selectable');
 
       if (
         startDay &&
@@ -25,27 +24,18 @@ function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>
         startDay.timestamp > mouseOverEndDay.timestamp &&
         !checkAreDaysEqual(day, startDay)
       ) {
-        className.push('selectable');
-
         return className.join(' ');
       }
 
       if (
-        startDay &&
-        mouseOverEndDay &&
-        day.timestamp > startDay.timestamp &&
-        day.timestamp < mouseOverEndDay.timestamp
-      ) {
-        className.push('between');
-
-        return className.join(' ');
-      }
-
-      if (
-        startDay &&
-        endDay &&
-        day.timestamp > startDay.timestamp &&
-        day.timestamp < endDay.timestamp
+        (startDay &&
+          mouseOverEndDay &&
+          day.timestamp > startDay.timestamp &&
+          day.timestamp < mouseOverEndDay.timestamp) ||
+        (startDay &&
+          endDay &&
+          day.timestamp > startDay.timestamp &&
+          day.timestamp < endDay.timestamp)
       ) {
         className.push('between');
 
@@ -186,7 +176,7 @@ function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>
       }
     };
 
-    getOnMouseOutForDay = (day: IDay, prevOnMouseOut: (() => void) | undefined) => {
+    getOnMouseOutForDay = (prevOnMouseOut: (() => void) | undefined) => {
       const {
         rangleSelect: { mouseOverEndDay, changeMouseOverEndDay },
       } = this.context;
@@ -206,16 +196,14 @@ function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>
     };
 
     getProps = () => {
-      const { day, className, onClick, onMouseOver, onMouseOut } = this.props;
-      const { displayedMonthIndex } = this.context.params;
-      const isFromMonth = checkIsDayFromMonth(day, displayedMonthIndex);
+      const { day, className, disabled, onClick, onMouseOver, onMouseOut } = this.props;
       const { getOnClickForDay, getClassNameForDay, getOnMouseOverForDay, getOnMouseOutForDay } =
         this;
 
-      const newClassName = isFromMonth ? getClassNameForDay(className, day) : className;
-      const newOnClick = isFromMonth ? getOnClickForDay(day, onClick) : onClick;
-      const newOnMouseOver = isFromMonth ? getOnMouseOverForDay(day, onMouseOver) : onMouseOver;
-      const newOnMouseOut = isFromMonth ? getOnMouseOutForDay(day, onMouseOver) : onMouseOut;
+      const newClassName = !disabled ? getClassNameForDay(className, day) : className;
+      const newOnClick = !disabled ? getOnClickForDay(day, onClick) : onClick;
+      const newOnMouseOver = !disabled ? getOnMouseOverForDay(day, onMouseOver) : onMouseOver;
+      const newOnMouseOut = !disabled ? getOnMouseOutForDay(onMouseOver) : onMouseOut;
 
       return {
         className: newClassName,

@@ -31,20 +31,20 @@ class DayCell extends Component<IDayCellProps, IDayCellState> {
 
   configureComponent() {
     const { minDate, maxDate, range, weekends, holidays, todoList } = this.context.config;
-
     let ComponentHOC = Root;
-    ComponentHOC = withCurrentDate(ComponentHOC);
-
-    if (minDate || maxDate) ComponentHOC = withMinMaxDate(ComponentHOC);
-    if (weekends) ComponentHOC = withWeekends(ComponentHOC);
-    if (holidays) ComponentHOC = withHolidays(ComponentHOC);
-    if (todoList) ComponentHOC = withTodoList(ComponentHOC);
 
     if (!range) {
       ComponentHOC = withSingleSelect(ComponentHOC);
     } else {
       ComponentHOC = withRangeSelect(ComponentHOC);
     }
+
+    if (minDate || maxDate) ComponentHOC = withMinMaxDate(ComponentHOC);
+    if (weekends) ComponentHOC = withWeekends(ComponentHOC);
+    if (holidays) ComponentHOC = withHolidays(ComponentHOC);
+    if (todoList) ComponentHOC = withTodoList(ComponentHOC);
+
+    ComponentHOC = withCurrentDate(ComponentHOC);
 
     return ComponentHOC;
   }

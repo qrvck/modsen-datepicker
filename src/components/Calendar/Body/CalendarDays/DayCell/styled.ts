@@ -8,7 +8,7 @@ const Cell = styled.button`
   align-items: center;
   justify-content: center;
 
-  cursor: default;
+  cursor: pointer;
   font: inherit;
   border: none;
   background-color: transparent;
@@ -19,36 +19,9 @@ const Cell = styled.button`
     border: 0.2em solid orange;
   }
 
-  &.selectable {
-    cursor: pointer;
-
-    &:hover {
-      background: ${({ theme }) => theme.colors.royal_blue_opacity_01};
-      color: ${({ theme }) => theme.colors.royal_blue};
-    }
-  }
-
-  &.weekend,
-  &.holiday {
-    color: ${({ theme }) => theme.colors.red};
-  }
-
-  &.hasTodo {
-    position: relative;
-
-    &::before {
-      position: absolute;
-      top: 0.3em;
-      right: 0.3em;
-
-      width: 0.5em;
-      height: 0.5em;
-
-      background-color: mediumpurple;
-      border-radius: 50%;
-
-      content: '';
-    }
+  &:hover {
+    background: ${({ theme }) => theme.colors.royal_blue_opacity_01};
+    color: ${({ theme }) => theme.colors.royal_blue};
   }
 
   &[disabled] {
@@ -71,6 +44,33 @@ const Cell = styled.button`
     }
   }
 
+  /* weekend, holiday */
+
+  &.weekend,
+  &.holiday {
+    color: ${({ theme }) => theme.colors.red};
+  }
+
+  /* todo */
+
+  &.hasTodo {
+    position: relative;
+
+    &::before {
+      position: absolute;
+      top: 0.3em;
+      right: 0.3em;
+
+      width: 0.5em;
+      height: 0.5em;
+
+      background-color: mediumpurple;
+      border-radius: 50%;
+
+      content: '';
+    }
+  }
+
   /* range */
 
   &.between {
@@ -82,15 +82,10 @@ const Cell = styled.button`
   &.start-selected {
     background: ${({ theme }) => theme.colors.royal_blue};
     color: ${({ theme }) => theme.colors.white};
-    border-top-left-radius: 8px;
+    border-top-left-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
-    border-bottom-left-radius: 8px;
-
-    &:hover {
-      color: ${({ theme }) => theme.colors.white};
-      background: ${({ theme }) => theme.colors.royal_blue};
-    }
+    border-bottom-left-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   }
 
   &.end-selected,
@@ -98,20 +93,15 @@ const Cell = styled.button`
     background: ${({ theme }) => theme.colors.royal_blue};
     color: ${({ theme }) => theme.colors.white};
     border-top-left-radius: 0;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-top-right-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
+    border-bottom-right-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
     border-bottom-left-radius: 0;
   }
 
-  &.end-selected {
-    &:hover {
-      color: ${({ theme }) => theme.colors.white};
-      background: ${({ theme }) => theme.colors.royal_blue};
-    }
-  }
-
-  &.end-hover {
-    cursor: pointer;
+  &.between:hover,
+  &.start-selected:hover,
+  &.end-selected:hover {
+    border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   }
 `;
 
