@@ -23,8 +23,8 @@ const Cell = styled.button`
     cursor: pointer;
 
     &:hover {
-      background: rgba(47, 128, 237, 0.1);
-      color: ${({ theme }) => theme.colors.royalBlue};
+      background: ${({ theme }) => theme.colors.royal_blue_opacity_01};
+      color: ${({ theme }) => theme.colors.royal_blue};
     }
   }
 
@@ -52,21 +52,21 @@ const Cell = styled.button`
   }
 
   &[disabled] {
-    color: ${({ theme }) => theme.colors.whiteAluminum};
+    color: ${({ theme }) => theme.colors.white_aluminum};
     cursor: default;
 
     &:hover {
       background: transparent;
-      color: ${({ theme }) => theme.colors.whiteAluminum};
+      color: ${({ theme }) => theme.colors.white_aluminum};
     }
   }
 
   &.selected {
-    background: ${({ theme }) => theme.colors.royalBlue};
+    background: ${({ theme }) => theme.colors.royal_blue};
     color: ${({ theme }) => theme.colors.white};
 
     &:hover {
-      background: ${({ theme }) => theme.colors.royalBlue};
+      background: ${({ theme }) => theme.colors.royal_blue};
       color: ${({ theme }) => theme.colors.white};
     }
   }
@@ -74,13 +74,13 @@ const Cell = styled.button`
   /* range */
 
   &.between {
-    background: rgba(47, 128, 237, 0.1);
+    background: ${({ theme }) => theme.colors.royal_blue_opacity_01};
     border-radius: 0;
-    color: ${({ theme }) => theme.colors.royalBlue};
+    color: ${({ theme }) => theme.colors.royal_blue};
   }
 
   &.start-selected {
-    background: ${({ theme }) => theme.colors.royalBlue};
+    background: ${({ theme }) => theme.colors.royal_blue};
     color: ${({ theme }) => theme.colors.white};
     border-top-left-radius: 8px;
     border-top-right-radius: 0;
@@ -89,13 +89,13 @@ const Cell = styled.button`
 
     &:hover {
       color: ${({ theme }) => theme.colors.white};
-      background: ${({ theme }) => theme.colors.royalBlue};
+      background: ${({ theme }) => theme.colors.royal_blue};
     }
   }
 
   &.end-selected,
   &.end-hover {
-    background: ${({ theme }) => theme.colors.royalBlue};
+    background: ${({ theme }) => theme.colors.royal_blue};
     color: ${({ theme }) => theme.colors.white};
     border-top-left-radius: 0;
     border-top-right-radius: 8px;
@@ -106,7 +106,7 @@ const Cell = styled.button`
   &.end-selected {
     &:hover {
       color: ${({ theme }) => theme.colors.white};
-      background: ${({ theme }) => theme.colors.royalBlue};
+      background: ${({ theme }) => theme.colors.royal_blue};
     }
   }
 

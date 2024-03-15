@@ -87,7 +87,7 @@ const Svg = styled.svg`
 
   ${AddButton}:hover &,
   ${RemoveButton}:hover & {
-    color: ${({ theme }) => theme.colors.royalBlue};
+    color: ${({ theme }) => theme.colors.royal_blue};
   }
 `;
 

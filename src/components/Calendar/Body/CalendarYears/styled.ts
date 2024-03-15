@@ -24,7 +24,7 @@ const YearCell = styled.div`
   cursor: pointer;
 
   &:hover {
-    background-color: rgba(47, 128, 237, 0.1);
+    background-color: ${({ theme }) => theme.colors.royal_blue_opacity_01};
   }
 
   &.current {

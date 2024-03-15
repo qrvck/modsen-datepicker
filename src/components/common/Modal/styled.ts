@@ -20,7 +20,7 @@ const InnerBackground = styled.div`
   right: 0;
   top: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: ${({ theme }) => theme.colors.black_opacity_08};
 `;
 
 const Window = styled.div`
@@ -47,13 +47,13 @@ const CloseButton = styled.button`
 
   border: none;
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
-  background-color: ${({ theme }) => theme.colors.royalBlue};
+  background-color: ${({ theme }) => theme.colors.royal_blue};
   color: ${({ theme }) => theme.colors.white};
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.royalBlue};
-    background: rgba(47, 128, 237, 0.1);
+    color: ${({ theme }) => theme.colors.royal_blue};
+    background: ${({ theme }) => theme.colors.royal_blue_opacity_01};
   }
 `;
 

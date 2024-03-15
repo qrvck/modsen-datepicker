@@ -17,7 +17,7 @@ const Button = styled.button`
   background-color: transparent;
 
   &:hover {
-    background: rgba(47, 128, 237, 0.1);
+    background: ${({ theme }) => theme.colors.royal_blue_opacity_01};
     border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   }
 `;

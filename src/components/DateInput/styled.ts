@@ -51,18 +51,18 @@ const Svg = styled.svg`
 
   ${CalendarButton}:hover &,
   ${ClearButton}:hover & {
-    color: ${({ theme }) => theme.colors.royalBlue};
+    color: ${({ theme }) => theme.colors.royal_blue};
   }
 
   ${ClearButton}:disabled & {
-    color: ${({ theme }) => theme.colors.whiteAluminum};
+    color: ${({ theme }) => theme.colors.white_aluminum};
   }
 `;
 
 const Hint = styled.p`
   margin: 0.1em 0 0 3.5em;
   font-size: 0.7em;
-  color: ${({ theme }) => theme.colors.whiteAluminum};
+  color: ${({ theme }) => theme.colors.white_aluminum};
 `;
 
 export { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper };

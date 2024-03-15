@@ -19,11 +19,13 @@ declare module 'styled-components' {
 
     colors: {
       white: string;
-      royalBlue: string;
-      whiteAluminum: string;
+      royal_blue: string;
+      royal_blue_opacity_01: string;
+      white_aluminum: string;
       gainborough: string;
       red: string;
       black: string;
+      black_opacity_08: string;
     };
   }
 }
