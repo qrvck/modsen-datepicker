@@ -1,6 +1,7 @@
 import React, { ChangeEvent, Component, ComponentType } from 'react';
 
 import { ContextData } from '@/providers/DataProvider';
+import { checkIsDayGreaterDate, checkIsDayLessDate } from '@/utils/check/checkDay';
 import { createDay } from '@/utils/create/createDay';
 
 import { IRootProps } from '../types';
@@ -97,12 +98,33 @@ function withRangeSelect(PassedComponent: ComponentType<IRootProps>) {
       this.setState({ inputValue: '', startDay: null, endDay: null });
     };
 
+    getIsIncorrectSelectedDate = () => {
+      const {
+        rangleSelect: { startDay, endDay },
+        config: { minDate, maxDate },
+      } = this.context;
+
+      if (startDay) {
+        if (minDate && checkIsDayLessDate(startDay, minDate)) return true;
+        if (maxDate && checkIsDayGreaterDate(startDay, maxDate)) return true;
+      }
+
+      if (endDay) {
+        if (minDate && checkIsDayLessDate(endDay, minDate)) return true;
+        if (maxDate && checkIsDayGreaterDate(endDay, maxDate)) return true;
+      }
+
+      return false;
+    };
+
     getProps = () => {
-      const { handleOnChangeInput, handleClickOnClearButton } = this;
+      const { getIsIncorrectSelectedDate, handleOnChangeInput, handleClickOnClearButton } = this;
       const { inputValue } = this.state;
 
       return {
         inputValue,
+        isError: getIsIncorrectSelectedDate(),
+        hintText: 'DD/MM/YYYY-DD/MM/YYYY',
         onChangeInput: handleOnChangeInput,
         onClickClearButton: handleClickOnClearButton,
       };

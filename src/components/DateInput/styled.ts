@@ -12,13 +12,15 @@ const InputWrapper = styled.div`
   margin: auto;
 `;
 
-const Input = styled.input.attrs({ placeholder: 'Choose Date' })`
+const Input = styled.input.attrs({ placeholder: 'Choose Date' })<{ $isError: boolean }>`
   width: 13.4em;
   padding: 0.7em 2.4em;
 
   font: inherit;
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
-  border: 1px solid ${({ theme }) => theme.colors.gainborough};
+  border: 1px solid;
+  border-color: ${({ $isError, theme }) =>
+    $isError ? theme.colors.red : theme.colors.gainborough};
 `;
 
 const CalendarButton = styled.button`

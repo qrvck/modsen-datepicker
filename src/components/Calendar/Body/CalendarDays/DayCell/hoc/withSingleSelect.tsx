@@ -45,7 +45,7 @@ function withSingleSelect<T extends IRootProps>(PassedComponent: ComponentType<T
       const { day, className, disabled, onClick } = this.props;
       const { getOnClickForDay, getClassNameForDay } = this;
 
-      const newClassName = !disabled ? getClassNameForDay(className, day) : className;
+      const newClassName = getClassNameForDay(className, day);
       const newOnClick = !disabled ? getOnClickForDay(day, onClick) : onClick;
 
       return { className: newClassName, onClick: newOnClick };

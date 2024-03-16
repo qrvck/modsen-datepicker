@@ -17,11 +17,10 @@ class Root extends Component<IRootProps> {
   };
 
   render() {
-    const { inputValue, onChangeInput, onClickClearButton } = this.props;
+    const { inputValue, isError, hintText, onChangeInput, onClickClearButton } = this.props;
     const { handleClickOnCalendarButton } = this;
     const {
       params: { isOpenCalendar },
-      config: { range },
     } = this.context;
 
     return (
@@ -33,7 +32,7 @@ class Root extends Component<IRootProps> {
             </Svg>
           </CalendarButton>
 
-          <Input value={inputValue} onChange={onChangeInput} />
+          <Input $isError={isError} value={inputValue} onChange={onChangeInput} />
 
           <ClearButton disabled={!inputValue} onClick={onClickClearButton}>
             <Svg>
@@ -44,7 +43,7 @@ class Root extends Component<IRootProps> {
           <Calendar isOpen={isOpenCalendar} />
         </InputWrapper>
 
-        <Hint>{range ? 'DD/MM/YYYY-DD/MM/YYYY' : 'DD/MM/YYYY'}</Hint>
+        <Hint>{hintText}</Hint>
       </Wrapper>
     );
   }

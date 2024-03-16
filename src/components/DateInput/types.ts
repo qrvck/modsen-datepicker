@@ -5,6 +5,8 @@ import { Root } from './Root';
 
 interface IRootProps {
   inputValue: string;
+  isError: boolean;
+  hintText: string;
   onChangeInput: (e: ChangeEvent<HTMLInputElement>) => void;
   onClickClearButton: () => void;
 }
