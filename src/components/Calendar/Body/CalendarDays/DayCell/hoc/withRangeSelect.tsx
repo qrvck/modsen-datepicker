@@ -1,7 +1,7 @@
 import React, { Component, ComponentType } from 'react';
 
 import { ContextData } from '@/providers/DataProvider';
-import { checkAreDaysEqual } from '@/utils/check/checkDay';
+import { checkAreDaysEqual, checkIsDayFromMonth } from '@/utils/check/checkDay';
 import { IDay } from '@/utils/create/createDay';
 
 import { IRootProps } from '../Root';
@@ -200,7 +200,10 @@ function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>
       const { getOnClickForDay, getClassNameForDay, getOnMouseOverForDay, getOnMouseOutForDay } =
         this;
 
-      const newClassName = !disabled ? getClassNameForDay(className, day) : className;
+      const { displayedMonthIndex } = this.context.params;
+      const isDayFromMonth = checkIsDayFromMonth(day, displayedMonthIndex);
+
+      const newClassName = isDayFromMonth ? getClassNameForDay(className, day) : className;
       const newOnClick = !disabled ? getOnClickForDay(day, onClick) : onClick;
       const newOnMouseOver = !disabled ? getOnMouseOverForDay(day, onMouseOver) : onMouseOver;
       const newOnMouseOut = !disabled ? getOnMouseOutForDay(onMouseOver) : onMouseOut;

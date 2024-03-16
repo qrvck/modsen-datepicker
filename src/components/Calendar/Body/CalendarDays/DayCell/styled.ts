@@ -11,13 +11,9 @@ const Cell = styled.button`
   cursor: pointer;
   font: inherit;
   border: none;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   box-sizing: border-box;
-
-  &.current {
-    border: 0.2em solid orange;
-  }
 
   &:hover {
     background: ${({ theme }) => theme.colors.royal_blue_opacity_01};
@@ -25,22 +21,21 @@ const Cell = styled.button`
   }
 
   &[disabled] {
-    color: ${({ theme }) => theme.colors.white_aluminum};
     cursor: default;
+    color: ${({ theme }) => theme.colors.white_aluminum};
+    background: ${({ theme }) => theme.colors.white};
+  }
 
-    &:hover {
-      background: transparent;
-      color: ${({ theme }) => theme.colors.white_aluminum};
-    }
+  &.current {
+    border: 0.2em solid orange;
   }
 
   &.selected {
     background: ${({ theme }) => theme.colors.royal_blue};
     color: ${({ theme }) => theme.colors.white};
 
-    &:hover {
-      background: ${({ theme }) => theme.colors.royal_blue};
-      color: ${({ theme }) => theme.colors.white};
+    &[disabled] {
+      color: ${({ theme }) => theme.colors.white_aluminum};
     }
   }
 
@@ -101,7 +96,13 @@ const Cell = styled.button`
   &.between:hover,
   &.start-selected:hover,
   &.end-selected:hover {
-    border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
+    color: ${({ theme }) => theme.colors.black_opacity_08};
+  }
+
+  &.between[disabled],
+  &.start-selected[disabled],
+  &.end-selected[disabled] {
+    color: ${({ theme }) => theme.colors.white_aluminum};
   }
 `;
 
