@@ -7,11 +7,11 @@ interface IDatePickerProps {
   holidays?: boolean;
   weekends?: boolean;
 
-  // singleValue?: Date | null;
-  // rangeValue?: [Date, Date] | null;
+  singleValue?: Date | null;
+  rangeValue?: [Date | null, Date | null];
 
   onSingleChange?: (value: Date | null) => void;
-  onRangeChange?: (value: [Date, Date] | null) => void;
+  onRangeChange?: (value: [Date | null, Date | null]) => void;
 }
 
 export type { IDatePickerProps };

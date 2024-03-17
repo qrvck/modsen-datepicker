@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { DatePicker } from '../index';
+import { WithRangeSelect } from './WithRangeSelect';
 
-const meta: Meta<typeof DatePicker> = {
-  component: DatePicker,
+const meta: Meta<typeof WithRangeSelect> = {
+  component: WithRangeSelect,
 };
 
 export default meta;
@@ -15,5 +15,11 @@ export const minMaxDate: Story = {
   args: {
     maxDate: new Date(2024, 3, 15),
     minDate: new Date(2024, 1, 15),
+  },
+};
+
+export const todoList: Story = {
+  args: {
+    todoList: true,
   },
 };

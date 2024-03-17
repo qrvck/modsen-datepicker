@@ -2,7 +2,7 @@ import React, { createContext, useLayoutEffect, useState } from 'react';
 
 import { IContextData, IDataProviderProps } from '@/@types/dataProvider';
 
-import { IDay } from '../utils/create/createDay';
+import { createDay, IDay } from '../utils/create/createDay';
 import { createFullMonth, IFullMonth } from '../utils/create/createFullMonth';
 
 const ContextData = createContext<IContextData>({
@@ -56,6 +56,8 @@ function DataProvider({
   todoList = false,
   holidays = false,
   weekends = false,
+  singleValue = null,
+  rangeValue = [null, null],
   onSingleChange = () => {},
   onRangeChange = () => {},
 }: IDataProviderProps) {
@@ -67,10 +69,12 @@ function DataProvider({
     createFullMonth(new Date(), firstDayOfWeek)
   );
 
-  const [selectedDayOfSingleSelect, setSelectedDayOfSingleSelect] = useState<IDay | null>(null);
-
-  const [startDayOfRangeSelect, setStartDayOfRangeSelect] = useState<IDay | null>(null);
-  const [endDayOfRangeSelect, setEndDayOfRangeSelect] = useState<IDay | null>(null);
+  const [startDayOfRangeSelect, setStartDayOfRangeSelect] = useState<IDay | null>(
+    rangeValue[0] && createDay(rangeValue[0])
+  );
+  const [endDayOfRangeSelect, setEndDayOfRangeSelect] = useState<IDay | null>(
+    rangeValue[0] && rangeValue[1] && createDay(rangeValue[1])
+  );
   const [mouseOverEndDayOfRangeSelect, setMouseOverEndDayOfRangeSelect] = useState<IDay | null>(
     null
   );
@@ -109,7 +113,7 @@ function DataProvider({
     },
 
     singleSelect: {
-      selectedDay: selectedDayOfSingleSelect,
+      selectedDay: singleValue && createDay(singleValue),
       changeSelectedDay: (day: IDay | null) => {
         if (day) {
           const { dayNumber, monthIndex, year } = day;
@@ -117,8 +121,6 @@ function DataProvider({
         } else {
           onSingleChange(null);
         }
-
-        setSelectedDayOfSingleSelect(day);
       },
     },
 
@@ -127,7 +129,10 @@ function DataProvider({
       startDay: startDayOfRangeSelect,
       endDay: endDayOfRangeSelect,
       changeMouseOverEndDay: (day: IDay | null) => setMouseOverEndDayOfRangeSelect(day),
-      changeStartDay: (day: IDay | null) => setStartDayOfRangeSelect(day),
+      changeStartDay: (day: IDay | null) => {
+        console.log(44444444);
+        setStartDayOfRangeSelect(day);
+      },
       changeEndDay: (day: IDay | null) => {
         if (startDayOfRangeSelect && endDayOfRangeSelect) {
           const {
@@ -147,7 +152,7 @@ function DataProvider({
 
           onRangeChange([startValue, endValue]);
         } else {
-          onRangeChange(null);
+          onRangeChange([null, null]);
         }
         setEndDayOfRangeSelect(day);
       },
