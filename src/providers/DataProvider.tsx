@@ -56,6 +56,8 @@ function DataProvider({
   todoList = false,
   holidays = false,
   weekends = false,
+  onSingleChange = () => {},
+  onRangeChange = () => {},
 }: IDataProviderProps) {
   const [isOpenCalendar, setIsOpenCalendar] = useState(false);
   const [mode, setMode] = useState<'days' | 'months' | 'years'>('days');
@@ -108,7 +110,16 @@ function DataProvider({
 
     singleSelect: {
       selectedDay: selectedDayOfSingleSelect,
-      changeSelectedDay: (day: IDay | null) => setSelectedDayOfSingleSelect(day),
+      changeSelectedDay: (day: IDay | null) => {
+        if (day) {
+          const { dayNumber, monthIndex, year } = day;
+          onSingleChange(new Date(year, monthIndex, dayNumber));
+        } else {
+          onSingleChange(null);
+        }
+
+        setSelectedDayOfSingleSelect(day);
+      },
     },
 
     rangleSelect: {
@@ -117,7 +128,29 @@ function DataProvider({
       endDay: endDayOfRangeSelect,
       changeMouseOverEndDay: (day: IDay | null) => setMouseOverEndDayOfRangeSelect(day),
       changeStartDay: (day: IDay | null) => setStartDayOfRangeSelect(day),
-      changeEndDay: (day: IDay | null) => setEndDayOfRangeSelect(day),
+      changeEndDay: (day: IDay | null) => {
+        if (startDayOfRangeSelect && endDayOfRangeSelect) {
+          const {
+            dayNumber: startDayNumber,
+            monthIndex: startMonthIndex,
+            year: startYear,
+          } = startDayOfRangeSelect;
+
+          const {
+            dayNumber: endDayNumber,
+            monthIndex: endMonthIndex,
+            year: endYear,
+          } = endDayOfRangeSelect;
+
+          const startValue = new Date(startYear, startMonthIndex, startDayNumber);
+          const endValue = new Date(endYear, endMonthIndex, endDayNumber);
+
+          onRangeChange([startValue, endValue]);
+        } else {
+          onRangeChange(null);
+        }
+        setEndDayOfRangeSelect(day);
+      },
     },
 
     todoList: {

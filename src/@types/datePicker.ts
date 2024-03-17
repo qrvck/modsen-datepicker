@@ -6,6 +6,12 @@ interface IDatePickerProps {
   todoList?: boolean;
   holidays?: boolean;
   weekends?: boolean;
+
+  // singleValue?: Date | null;
+  // rangeValue?: [Date, Date] | null;
+
+  onSingleChange?: (value: Date | null) => void;
+  onRangeChange?: (value: [Date, Date] | null) => void;
 }
 
 export type { IDatePickerProps };
