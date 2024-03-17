@@ -5,6 +5,7 @@ import { checkIsDayGreaterDate, checkIsDayLessDate } from '@/utils/check/checkDa
 import { createDay } from '@/utils/create/createDay';
 
 import { IRootProps } from '../types';
+import { SINGLE_SELECT_HINT, SINGLE_SELECT_MASK } from './constants';
 
 function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
   return class WithSingleSelect extends Component {
@@ -46,7 +47,7 @@ function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
       const { changeIsOpenCalendar } = this.context.params;
       const { value } = e.target;
       const { inputValue } = this.state;
-      let mask = 'xx/xx/xxxx';
+      let mask = SINGLE_SELECT_MASK;
       const maskLength = 10;
       const newValue = value.replace(/\D/g, '');
 
@@ -106,7 +107,7 @@ function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
       return {
         inputValue,
         isError: getIsIncorrectSelectedDate(),
-        hintText: 'DD/MM/YYYY',
+        hintText: SINGLE_SELECT_HINT,
         onChangeInput: handleOnChangeInput,
         onClickClearButton: handleClickOnClearButton,
       };

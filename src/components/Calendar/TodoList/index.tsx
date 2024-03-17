@@ -4,6 +4,7 @@ import sprite from '@/assets/sprite.svg';
 import { Modal } from '@/components/common/Modal';
 import { ContextData } from '@/providers/DataProvider';
 
+import { HINT_MESSAGE_1, HINT_MESSAGE_2, TITLE } from './constants';
 import {
   AddButton,
   AddInput,
@@ -105,7 +106,7 @@ class TodoList extends Component<object, ITodoListState> {
       return (
         <Modal onClose={handleOnClose}>
           <Title>
-            <b>TODOLIST</b> {`${dayNumber} ${monthName} ${year}`}
+            <b>{TITLE}</b> {`${dayNumber} ${monthName} ${year}`}
           </Title>
 
           <AddInputWrapper>
@@ -137,9 +138,12 @@ class TodoList extends Component<object, ITodoListState> {
           )}
 
           {todoList.length ? (
-            <HintMessage>Amount: {todoList.length}</HintMessage>
+            <HintMessage>
+              {HINT_MESSAGE_1}
+              {todoList.length}
+            </HintMessage>
           ) : (
-            <HintMessage>Nothing is scheduled!</HintMessage>
+            <HintMessage>{HINT_MESSAGE_2}</HintMessage>
           )}
         </Modal>
       );

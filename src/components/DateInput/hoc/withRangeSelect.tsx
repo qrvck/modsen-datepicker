@@ -5,6 +5,7 @@ import { checkIsDayGreaterDate, checkIsDayLessDate } from '@/utils/check/checkDa
 import { createDay } from '@/utils/create/createDay';
 
 import { IRootProps } from '../types';
+import { RANGE_SELECT_HINT, RANGE_SELECT_MASK } from './constants';
 
 function withRangeSelect(PassedComponent: ComponentType<IRootProps>) {
   return class WithRangeSelect extends Component {
@@ -52,7 +53,7 @@ function withRangeSelect(PassedComponent: ComponentType<IRootProps>) {
       const { changeIsOpenCalendar } = this.context.params;
       const { value } = e.target;
       const { inputValue } = this.state;
-      let mask = 'xx/xx/xxxx-xx/xx/xxxx';
+      let mask = RANGE_SELECT_MASK;
       const maskLength = 21;
       const newValue = value.replace(/\D/g, '');
 
@@ -136,7 +137,7 @@ function withRangeSelect(PassedComponent: ComponentType<IRootProps>) {
       return {
         inputValue,
         isError: getIsIncorrectSelectedDate(),
-        hintText: 'DD/MM/YYYY-DD/MM/YYYY',
+        hintText: RANGE_SELECT_HINT,
         onChangeInput: handleOnChangeInput,
         onClickClearButton: handleClickOnClearButton,
       };
