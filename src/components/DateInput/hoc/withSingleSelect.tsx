@@ -13,15 +13,22 @@ function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
 
     state = {
       inputValue: '',
+      cursor: 0,
       selectedDay: null,
     };
+
+    inputRef: HTMLInputElement | null = null;
 
     componentDidMount() {
       this.syncState();
     }
 
     componentDidUpdate() {
+      const { cursor } = this.state;
+
       this.syncState();
+
+      if (this.inputRef) this.inputRef.setSelectionRange(cursor, cursor);
     }
 
     syncState() {
@@ -43,16 +50,20 @@ function withSingleSelect(PassedComponent: ComponentType<IRootProps>) {
       const maskLength = 10;
       const newValue = value.replace(/\D/g, '');
 
-      if (value.length > inputValue.length) {
-        newValue.split('').forEach((number) => (mask = mask.replace('x', number)));
-        const indexOfLastMaskItem = mask.indexOf('x');
-        mask = indexOfLastMaskItem !== -1 ? mask.slice(0, indexOfLastMaskItem) : mask;
+      newValue.split('').forEach((number) => (mask = mask.replace('x', number)));
+      const indexOfLastMaskItem = mask.indexOf('x');
+      mask = indexOfLastMaskItem !== -1 ? mask.slice(0, indexOfLastMaskItem) : mask;
 
-        this.setState({ inputValue: mask });
-      } else {
-        mask = '';
-        this.setState({ inputValue: value });
+      let selectionStart = e.target.selectionStart || 0;
+
+      if (value.length >= inputValue.length) {
+        selectionStart = mask[selectionStart - 1] === '/' ? selectionStart + 1 : selectionStart;
+        selectionStart = mask[selectionStart] === '/' ? selectionStart + 1 : selectionStart;
       }
+
+      this.setState({ inputValue: mask, cursor: selectionStart });
+      this.inputRef = e.target;
+      // setTimeout(() => e.target.setSelectionRange(selectionStart, selectionStart));
 
       if (mask.length === maskLength) {
         const [inputDayNumber, inputMonthNumber, inputYear] = mask.split('/').map((i) => Number(i));
