@@ -4,6 +4,7 @@ const colors = {
   royal_blue_opacity_01: 'rgba(47, 128, 237, 0.1)',
   white_aluminum: '#aaaaaa',
   gainborough: '#dddddd',
+  gainborough2: '#e1e1e1',
   red: '#ff0000',
   black: '#000000',
   black_opacity_08: 'rgba(0, 0, 0, 0.85)',

@@ -23,6 +23,7 @@ declare module 'styled-components' {
       royal_blue_opacity_01: string;
       white_aluminum: string;
       gainborough: string;
+      gainborough2: string;
       red: string;
       black: string;
       black_opacity_08: string;
