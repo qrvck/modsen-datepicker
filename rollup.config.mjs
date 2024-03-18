@@ -4,6 +4,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
+import svgr from '@svgr/rollup';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { visualizer } from 'rollup-plugin-visualizer';
 
@@ -23,6 +24,7 @@ export default {
   plugins: [
     peerDepsExternal(),
     // image(),
+    svgr(),
     resolve(),
     commonjs(),
     typescript({

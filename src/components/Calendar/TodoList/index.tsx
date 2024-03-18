@@ -1,18 +1,18 @@
 import React, { ChangeEvent, Component, createRef, KeyboardEvent } from 'react';
 
-import sprite from '../../../assets/sprite.svg';
 import { ContextData } from '../../../providers/DataProvider';
 import { Modal } from '../../common/Modal';
 import { HINT_MESSAGE_1, HINT_MESSAGE_2, TITLE } from './constants';
 import {
   AddButton,
+  AddIcon,
   AddInput,
   AddInputWrapper,
   HintMessage,
   Item,
   List,
   RemoveButton,
-  Svg,
+  RemoveIcon,
   Title,
 } from './styled';
 import { todoStorage } from './todoStorage';
@@ -115,9 +115,7 @@ class TodoList extends Component<object, ITodoListState> {
               onKeyDown={handleOnKeyDownAddInput}
             />
             <AddButton onClick={handleClickOnAddButton} disabled={!addInputValue}>
-              <Svg>
-                <use href={sprite + '#add'} />
-              </Svg>
+              <AddIcon />
             </AddButton>
           </AddInputWrapper>
 
@@ -127,9 +125,7 @@ class TodoList extends Component<object, ITodoListState> {
                 <Item key={uuid}>
                   {desc}
                   <RemoveButton onClick={() => handleClickOnRemoveButton(index)}>
-                    <Svg>
-                      <use href={sprite + '#remove'} />
-                    </Svg>
+                    <RemoveIcon />
                   </RemoveButton>
                 </Item>
               ))}

@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
 
-import sprite from '../../assets/sprite.svg';
 import { ContextData } from '../../providers/DataProvider';
 import { Calendar } from '../Calendar';
-import { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper } from './styled';
+import {
+  CalendarButton,
+  CalendarIcon,
+  ClearButton,
+  ClearIcon,
+  Hint,
+  Input,
+  InputWrapper,
+  Wrapper,
+} from './styled';
 import { IRootProps } from './types';
 
 class Root extends Component<IRootProps> {
@@ -26,17 +34,13 @@ class Root extends Component<IRootProps> {
       <Wrapper>
         <InputWrapper>
           <CalendarButton onClick={handleClickOnCalendarButton}>
-            <Svg>
-              <use href={sprite + '#calendar'} />
-            </Svg>
+            <CalendarIcon />
           </CalendarButton>
 
           <Input $isError={isError} value={inputValue} onChange={onChangeInput} />
 
           <ClearButton disabled={!inputValue} onClick={onClickClearButton}>
-            <Svg>
-              <use href={sprite + '#clear'} />
-            </Svg>
+            <ClearIcon />
           </ClearButton>
 
           <Calendar isOpen={isOpenCalendar} />

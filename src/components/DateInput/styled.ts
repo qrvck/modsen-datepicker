@@ -1,5 +1,8 @@
 import { styled } from 'styled-components';
 
+import Calendar from '../../assets/icons/calendar.svg';
+import Clear from '../../assets/icons/clear.svg';
+
 const Wrapper = styled.div`
   width: 18.2em;
   margin: auto;
@@ -45,13 +48,23 @@ const ClearButton = styled(CalendarButton)`
   }
 `;
 
-const Svg = styled.svg`
+const CalendarIcon = styled(Calendar)`
   width: 1.2em;
   height: 1.2em;
   color: ${({ theme }) => theme.colors.black};
   vertical-align: bottom;
 
-  ${CalendarButton}:hover &,
+  ${CalendarButton}:hover {
+    color: ${({ theme }) => theme.colors.royal_blue};
+  }
+`;
+
+const ClearIcon = styled(Clear)`
+  width: 1.2em;
+  height: 1.2em;
+  color: ${({ theme }) => theme.colors.black};
+  vertical-align: bottom;
+
   ${ClearButton}:hover & {
     color: ${({ theme }) => theme.colors.royal_blue};
   }
@@ -67,4 +80,4 @@ const Hint = styled.p`
   color: ${({ theme }) => theme.colors.white_aluminum};
 `;
 
-export { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper };
+export { CalendarButton, CalendarIcon, ClearButton, ClearIcon, Hint, Input, InputWrapper, Wrapper };

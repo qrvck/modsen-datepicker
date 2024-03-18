@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import sprite from '../../../assets/sprite.svg';
 import { ContextData } from '../../../providers/DataProvider';
-import { Button, NextMonthButton, PrevMonthButton, Svg, Wrapper } from './styled';
+import { Button, Icon, NextMonthButton, PrevMonthButton, Wrapper } from './styled';
 
 class Header extends Component {
   static contextType = ContextData;
@@ -78,9 +77,7 @@ class Header extends Component {
       <Wrapper $center={mode !== 'days'}>
         {mode === 'days' && (
           <PrevMonthButton onClick={onClickPrevMonth}>
-            <Svg>
-              <use href={sprite + '#double-arrow'} />
-            </Svg>
+            <Icon />
           </PrevMonthButton>
         )}
 
@@ -91,9 +88,7 @@ class Header extends Component {
 
         {mode === 'days' && (
           <NextMonthButton onClick={onClickNextMonth}>
-            <Svg>
-              <use href={sprite + '#double-arrow'} />
-            </Svg>
+            <Icon />
           </NextMonthButton>
         )}
       </Wrapper>

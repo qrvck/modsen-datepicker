@@ -1,5 +1,8 @@
 import { styled } from 'styled-components';
 
+import Add from '../../../assets/icons/add.svg';
+import Remove from '../../../assets/icons/remove.svg';
+
 const Title = styled.p`
   margin: 0;
   text-align: center;
@@ -79,16 +82,37 @@ const HintMessage = styled.p`
   text-decoration: underline;
 `;
 
-const Svg = styled.svg`
+const AddIcon = styled(Add)`
   width: 1.7em;
   height: 1.7em;
   color: ${({ theme }) => theme.colors.black};
   vertical-align: bottom;
 
-  ${AddButton}:hover &,
+  ${AddButton}:hover & {
+    color: ${({ theme }) => theme.colors.royal_blue};
+  }
+`;
+
+const RemoveIcon = styled(Remove)`
+  width: 1.7em;
+  height: 1.7em;
+  color: ${({ theme }) => theme.colors.black};
+  vertical-align: bottom;
+
   ${RemoveButton}:hover & {
     color: ${({ theme }) => theme.colors.royal_blue};
   }
 `;
 
-export { AddButton, AddInput, AddInputWrapper, HintMessage, Item, List, RemoveButton, Svg, Title };
+export {
+  AddButton,
+  AddIcon,
+  AddInput,
+  AddInputWrapper,
+  HintMessage,
+  Item,
+  List,
+  RemoveButton,
+  RemoveIcon,
+  Title,
+};

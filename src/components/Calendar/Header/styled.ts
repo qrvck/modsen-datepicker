@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
 
+import DoubleArrow from '../../../assets/icons/doubleArrow.svg';
+
 const Wrapper = styled.div<{ $center: boolean }>`
   display: flex;
   align-items: center;
@@ -30,7 +32,7 @@ const NextMonthButton = styled(PrevMonthButton)`
   padding: 0.3em;
 `;
 
-const Svg = styled.svg`
+const Icon = styled(DoubleArrow)`
   width: 1.4em;
   height: 1.4em;
   color: ${({ theme }) => theme.colors.black};
@@ -41,4 +43,4 @@ const Svg = styled.svg`
   }
 `;
 
-export { Button, NextMonthButton, PrevMonthButton, Svg, Wrapper };
+export { Button, Icon, NextMonthButton, PrevMonthButton, Wrapper };
