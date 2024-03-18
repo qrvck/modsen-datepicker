@@ -1,4 +1,4 @@
-import { IDay } from '@/utils/create/createDay';
+import { IDay } from '../../../../../utils/create/createDay';
 
 interface IDayCellProps {
   day: IDay;

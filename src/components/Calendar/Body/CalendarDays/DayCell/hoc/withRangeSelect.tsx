@@ -1,9 +1,8 @@
 import React, { Component, ComponentType } from 'react';
 
-import { ContextData } from '@/providers/DataProvider';
-import { checkAreDaysEqual, checkIsDayFromMonth } from '@/utils/check/checkDay';
-import { IDay } from '@/utils/create/createDay';
-
+import { ContextData } from '../../../../../../providers/DataProvider';
+import { checkAreDaysEqual, checkIsDayFromMonth } from '../../../../../../utils/check/checkDay';
+import { IDay } from '../../../../../../utils/create/createDay';
 import { IRootProps } from '../Root';
 
 function withRangeSelect<T extends IRootProps>(PassedComponent: ComponentType<T>) {

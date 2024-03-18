@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import { ContextData } from '@/providers/DataProvider';
-import { getDayNames } from '@/utils/get/getDayNames';
-
+import { ContextData } from '../../../../providers/DataProvider';
+import { getDayNames } from '../../../../utils/get/getDayNames';
 import { Cell, Wrapper } from './styled';
 
 class DayNames extends Component {

@@ -1,5 +1,4 @@
-import { IDay } from '@/utils/create/createDay';
-
+import { IDay } from '../../../utils/create/createDay';
 import { ITodoItem, ITodoLists } from './types';
 
 const getInitialTodoListsFromLocalStorage = () => {

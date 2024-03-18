@@ -1,9 +1,8 @@
 import React, { Component, ComponentType } from 'react';
 
-import { HOLIDAYS } from '@/constants';
-import { ContextData } from '@/providers/DataProvider';
-import { IDay } from '@/utils/create/createDay';
-
+import { HOLIDAYS } from '../../../../../../constants';
+import { ContextData } from '../../../../../../providers/DataProvider';
+import { IDay } from '../../../../../../utils/create/createDay';
 import { IRootProps } from '../Root';
 
 function withHolidays<T extends IRootProps>(PassedComponent: ComponentType<T>) {

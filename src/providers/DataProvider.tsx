@@ -1,7 +1,6 @@
 import React, { createContext, useLayoutEffect, useState } from 'react';
 
-import { IContextData, IDataProviderProps } from '@/@types/dataProvider';
-
+import { IContextData, IDataProviderProps } from '../@types/dataProvider';
 import { createDay, IDay } from '../utils/create/createDay';
 import { createFullMonth, IFullMonth } from '../utils/create/createFullMonth';
 

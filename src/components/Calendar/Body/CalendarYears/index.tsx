@@ -1,9 +1,8 @@
 import React, { Component, createRef } from 'react';
 
-import { MIN_YEAR } from '@/constants';
-import { ContextData } from '@/providers/DataProvider';
-import { getYears } from '@/utils/get/getYears';
-
+import { MIN_YEAR } from '../../../../constants';
+import { ContextData } from '../../../../providers/DataProvider';
+import { getYears } from '../../../../utils/get/getYears';
 import { Wrapper, YearCell } from './styled';
 
 class CalendarYears extends Component {

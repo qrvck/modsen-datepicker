@@ -1,9 +1,8 @@
 import React, { ChangeEvent, Component, ComponentType } from 'react';
 
-import { ContextData } from '@/providers/DataProvider';
-import { checkIsDayGreaterDate, checkIsDayLessDate } from '@/utils/check/checkDay';
-import { createDay } from '@/utils/create/createDay';
-
+import { ContextData } from '../../../providers/DataProvider';
+import { checkIsDayGreaterDate, checkIsDayLessDate } from '../../../utils/check/checkDay';
+import { createDay } from '../../../utils/create/createDay';
 import { IRootProps } from '../types';
 import { RANGE_SELECT_HINT, RANGE_SELECT_MASK } from './constants';
 

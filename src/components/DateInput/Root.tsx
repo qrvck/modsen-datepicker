@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import sprite from '@/assets/sprite.svg';
-import { ContextData } from '@/providers/DataProvider';
-
+import sprite from '../../assets/sprite.svg';
+import { ContextData } from '../../providers/DataProvider';
 import { Calendar } from '../Calendar';
 import { CalendarButton, ClearButton, Hint, Input, InputWrapper, Svg, Wrapper } from './styled';
 import { IRootProps } from './types';

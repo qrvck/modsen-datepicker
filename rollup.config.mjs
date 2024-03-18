@@ -1,6 +1,6 @@
-import alias from '@rollup/plugin-alias';
+// import alias from '@rollup/plugin-alias';
 import commonjs from '@rollup/plugin-commonjs';
-import image from '@rollup/plugin-image';
+// import image from '@rollup/plugin-image';
 import resolve from '@rollup/plugin-node-resolve';
 import terser from '@rollup/plugin-terser';
 import typescript from '@rollup/plugin-typescript';
@@ -22,7 +22,7 @@ export default {
 
   plugins: [
     peerDepsExternal(),
-    image(),
+    // image(),
     resolve(),
     commonjs(),
     typescript({
@@ -31,9 +31,9 @@ export default {
       declarationDir: 'dist',
       sourceMap: isDev,
     }),
-    alias({
-      entries: [{ find: '@', replacement: './src' }],
-    }),
+    // alias({
+    //   entries: [{ find: '@', replacement: './src' }],
+    // }),
     isDev ? null : terser(),
     isDev
       ? visualizer({

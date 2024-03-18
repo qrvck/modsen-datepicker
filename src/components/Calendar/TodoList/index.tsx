@@ -1,9 +1,8 @@
 import React, { ChangeEvent, Component, createRef, KeyboardEvent } from 'react';
 
-import sprite from '@/assets/sprite.svg';
-import { Modal } from '@/components/common/Modal';
-import { ContextData } from '@/providers/DataProvider';
-
+import sprite from '../../../assets/sprite.svg';
+import { ContextData } from '../../../providers/DataProvider';
+import { Modal } from '../../common/Modal';
 import { HINT_MESSAGE_1, HINT_MESSAGE_2, TITLE } from './constants';
 import {
   AddButton,

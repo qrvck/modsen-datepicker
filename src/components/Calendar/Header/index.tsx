@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import sprite from '@/assets/sprite.svg';
-import { ContextData } from '@/providers/DataProvider';
-
+import sprite from '../../../assets/sprite.svg';
+import { ContextData } from '../../../providers/DataProvider';
 import { Button, NextMonthButton, PrevMonthButton, Svg, Wrapper } from './styled';
 
 class Header extends Component {

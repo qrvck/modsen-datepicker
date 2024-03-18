@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 
-import { ContextData } from '@/providers/DataProvider';
-import { getMonthNames } from '@/utils/get/getMonthNames';
-
+import { ContextData } from '../../../../providers/DataProvider';
+import { getMonthNames } from '../../../../utils/get/getMonthNames';
 import { MonthCell, Wrapper } from './styled';
 
 class CalendarMonths extends Component {

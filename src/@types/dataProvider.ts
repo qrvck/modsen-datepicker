@@ -1,8 +1,7 @@
 import { ReactNode } from 'react';
 
-import { IDay } from '@/utils/create/createDay';
-import { IFullMonth } from '@/utils/create/createFullMonth';
-
+import { IDay } from '../utils/create/createDay';
+import { IFullMonth } from '../utils/create/createFullMonth';
 import { IDatePickerProps } from './datePicker';
 
 interface IDataProviderProps extends IDatePickerProps {

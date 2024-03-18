@@ -1,9 +1,8 @@
 import React from 'react';
 
-import { IDatePickerProps } from '@/@types/datePicker';
-import { DateInput } from '@/components/DateInput';
-import { DataProvider } from '@/providers/DataProvider';
-
+import { IDatePickerProps } from './@types/datePicker';
+import { DateInput } from './components/DateInput';
+import { DataProvider } from './providers/DataProvider';
 import { ThemeProvider } from './providers/ThemeProvider';
 
 function DatePicker(props: IDatePickerProps) {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
-import { ContextData } from '@/providers/DataProvider';
-
+import { ContextData } from '../../../../providers/DataProvider';
 import { DayCell } from './DayCell';
 import { Wrapper } from './styled';
 
