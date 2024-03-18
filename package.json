@@ -1,6 +1,6 @@
 {
-  "name": "modsen-datepicker",
-  "version": "1.0.0",
+  "name": "modsen-datepicker-by-vlad-k",
+  "version": "0.0.1",
   "description": "datepicker for React app",
   "author": {
     "name": "Vlad Kapitan",
@@ -27,8 +27,9 @@
     "lint": "eslint --fix \"./src/**/*.{js,ts,jsx,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,ts,jsx,tsx,json}\"",
     "eslint": "eslint",
-    "postinstall": "husky",
-    "chromatic": "npx chromatic --project-token=chpt_e33bf2f1ee89de0"
+    "prepare": "husky",
+    "chromatic": "npx chromatic --project-token=chpt_e33bf2f1ee89de0",
+    "publish": "npm run build:prod && npm publish"
   },
   "peerDependencies": {
     "react": "^18.2.0",
