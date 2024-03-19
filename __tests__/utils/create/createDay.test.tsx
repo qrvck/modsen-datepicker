@@ -1,9 +1,9 @@
 import '@testing-library/jest-dom';
 
 import { createDay } from '../../../src/utils/create/createDay';
-import { DATE_RESULT, DATE_VALUE } from './createDay.test.mock';
+import { DATE_VALUE, DAY_RESULT } from './createDay.test.mock';
 
 test('should correctly create a day object', () => {
-  const date = createDay(DATE_VALUE);
-  expect(date).toStrictEqual(DATE_RESULT);
+  const day = createDay(DATE_VALUE);
+  expect(day).toStrictEqual(DAY_RESULT);
 });

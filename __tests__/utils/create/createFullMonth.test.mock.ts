@@ -1,5 +1,5 @@
 export const DATE_VALUE = new Date(2024, 5, 1);
-export const DATE_RESULT = {
+export const FULL_MONTH_RESULT = {
   monthNumber: 6,
   monthIndex: 5,
   monthName: 'June',
