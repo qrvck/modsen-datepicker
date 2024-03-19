@@ -27,7 +27,6 @@ function createDay(date: Date, firstDayOfWeek: 'sunday' | 'monday' = 'monday') {
     monthName,
     year,
     timestamp,
-    props: {},
   };
 }
 
