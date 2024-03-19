@@ -6,6 +6,7 @@ import Clear from '../../assets/icons/clear.svg';
 const Wrapper = styled.div`
   width: 18.2em;
   margin: auto;
+  box-sizing: content-box;
 `;
 
 const InputWrapper = styled.div`
@@ -13,11 +14,13 @@ const InputWrapper = styled.div`
 
   width: 18.2em;
   margin: auto;
+  box-sizing: content-box;
 `;
 
 const Input = styled.input.attrs({ placeholder: 'Choose Date' })<{ $isError: boolean }>`
   width: 13.4em;
   padding: 0.7em 2.4em;
+  box-sizing: content-box;
 
   font: inherit;
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
