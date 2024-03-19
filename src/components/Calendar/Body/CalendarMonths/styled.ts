@@ -13,6 +13,7 @@ const MonthCell = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  color: ${({ theme }) => theme.colors.black};
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
 
   cursor: pointer;

@@ -16,6 +16,7 @@ const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
   border: none;
+  color: ${({ theme }) => theme.colors.black};
   background-color: transparent;
 
   &:hover {

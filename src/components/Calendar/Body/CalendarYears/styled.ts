@@ -20,6 +20,7 @@ const YearCell = styled.div`
   justify-content: center;
   box-sizing: border-box;
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
+  color: ${({ theme }) => theme.colors.black};
 
   cursor: pointer;
 

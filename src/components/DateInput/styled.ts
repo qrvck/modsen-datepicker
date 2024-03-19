@@ -7,6 +7,7 @@ const Wrapper = styled.div`
   width: 18.2em;
   margin: auto;
   box-sizing: content-box;
+  color: ${({ theme }) => theme.colors.black};
 `;
 
 const InputWrapper = styled.div`

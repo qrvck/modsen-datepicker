@@ -11,6 +11,7 @@ const Cell = styled.button`
   cursor: pointer;
   font: inherit;
   border: none;
+  color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
   box-sizing: border-box;

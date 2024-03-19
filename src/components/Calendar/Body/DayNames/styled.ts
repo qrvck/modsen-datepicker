@@ -13,6 +13,7 @@ const Cell = styled.div`
   justify-content: center;
 
   font-weight: 700;
+  color: ${({ theme }) => theme.colors.black};
   cursor: default;
 `;
 
