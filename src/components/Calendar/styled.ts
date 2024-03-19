@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   padding: 0.7em;
   width: 16.8em;
+  box-sizing: content-box;
 
   border: 1px solid ${({ theme }) => theme.colors.gainborough2};
   border-radius: ${({ theme }) => theme.sizes.borderRadius.sm};
