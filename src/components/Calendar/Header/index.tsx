@@ -82,8 +82,12 @@ class Header extends Component {
         )}
 
         <div>
-          <Button onClick={onClickMonth}>{monthName}</Button>
-          <Button onClick={onClickYear}>{year}</Button>
+          <Button data-testid="month-name-button" onClick={onClickMonth}>
+            {monthName}
+          </Button>
+          <Button data-testid="year-button" onClick={onClickYear}>
+            {year}
+          </Button>
         </div>
 
         {mode === 'days' && (

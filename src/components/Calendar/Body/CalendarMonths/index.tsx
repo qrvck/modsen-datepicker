@@ -44,7 +44,7 @@ class CalendarMonths extends Component {
   render() {
     const { createMonthCells } = this;
 
-    return <Wrapper>{...createMonthCells()}</Wrapper>;
+    return <Wrapper>{createMonthCells()}</Wrapper>;
   }
 }
 

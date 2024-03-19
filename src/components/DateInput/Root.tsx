@@ -33,11 +33,16 @@ class Root extends Component<IRootProps> {
     return (
       <Wrapper>
         <InputWrapper>
-          <CalendarButton onClick={handleClickOnCalendarButton}>
+          <CalendarButton data-testid="calendar-button" onClick={handleClickOnCalendarButton}>
             <CalendarIcon />
           </CalendarButton>
 
-          <Input $isError={isError} value={inputValue} onChange={onChangeInput} />
+          <Input
+            data-testid="date-input"
+            $isError={isError}
+            value={inputValue}
+            onChange={onChangeInput}
+          />
 
           <ClearButton disabled={!inputValue} onClick={onClickClearButton}>
             <ClearIcon />

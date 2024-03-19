@@ -12,5 +12,13 @@
     "@babel/preset-typescript"
   ],
 
-  "plugins": ["babel-plugin-styled-components"]
+  "plugins": [
+    [
+      "@babel/plugin-transform-typescript",
+      {
+        "allowDeclareFields": true
+      }
+    ],
+    "babel-plugin-styled-components"
+  ]
 }

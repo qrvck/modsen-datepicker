@@ -19,7 +19,7 @@ class CalendarDays extends Component {
   render() {
     const { createDayCells } = this;
 
-    return <Wrapper>{...createDayCells()}</Wrapper>;
+    return <Wrapper>{createDayCells()}</Wrapper>;
   }
 }
 

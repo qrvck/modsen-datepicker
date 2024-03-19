@@ -54,7 +54,7 @@ class CalendarYears extends Component {
   render() {
     const { createYearCells, wrapperRef } = this;
 
-    return <Wrapper ref={wrapperRef}>{...createYearCells()}</Wrapper>;
+    return <Wrapper ref={wrapperRef}>{createYearCells()}</Wrapper>;
   }
 }
 
