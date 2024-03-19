@@ -129,7 +129,6 @@ function DataProvider({
       endDay: endDayOfRangeSelect,
       changeMouseOverEndDay: (day: IDay | null) => setMouseOverEndDayOfRangeSelect(day),
       changeStartDay: (day: IDay | null) => {
-        console.log(44444444);
         setStartDayOfRangeSelect(day);
       },
       changeEndDay: (day: IDay | null) => {
