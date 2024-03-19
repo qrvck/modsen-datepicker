@@ -1,4 +1,4 @@
-## Simple and small DataPicker
+## Simple and small DatePicker
 (possibly with bugs 🐞)
 
 ### it is a preview:
