@@ -81,12 +81,12 @@ function withRangeSelect(PassedComponent: ComponentType<IRootProps>) {
           .split('/')
           .map((i) => Number(i));
 
-        const startDay = createDay(
+        let startDay = createDay(
           new Date(yearOfStartDay, monthNumberOfStartDay - 1, dayNumberOfStartDay)
         );
-        const endDay = createDay(
-          new Date(yearOfEndDay, monthNumberOfEndDay - 1, dayNumberOfEndDay)
-        );
+        let endDay = createDay(new Date(yearOfEndDay, monthNumberOfEndDay - 1, dayNumberOfEndDay));
+
+        if (startDay.timestamp > endDay.timestamp) [endDay, startDay] = [startDay, endDay];
 
         const newStartDayValue = `${startDay.fullDayNumber}/${startDay.fullMonthNumber}/${startDay.year}`;
         const newEndDayValue = `${endDay.fullDayNumber}/${endDay.fullMonthNumber}/${endDay.year}`;
