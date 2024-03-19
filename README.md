@@ -2,7 +2,7 @@
 (possibly with bugs 🐞)
 
 ### it is a preview:
-![DatePicker](preview.png)
+![DatePicker](https://github.com/qrvck/modsen-datepicker/raw/develop/preview.png)
 
 ### it is some example:
 
